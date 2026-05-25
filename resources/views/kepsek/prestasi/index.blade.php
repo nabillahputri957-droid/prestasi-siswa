@@ -18,21 +18,21 @@
 
             <select name="kategori_id" onchange="this.form.submit()" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none min-w-[140px] text-gray-600">
                 <option value="">Semua Kategori</option>
-                @foreach($kategoris as $k)
-                    <option value="{{ $k->id }}" {{ request('kategori_id') == $k->id ? 'selected' : '' }}>{{ $k->nama_kategori }}</option>
+                @foreach($kategori as $k)
+                    <option value="{{ $k->id }}" {{ request('kategori_id') == $k->id ? 'selected' : '' }}>{{ $k->jenis_prestasi }} ({{ $k->nama_kategori }})</option>
                 @endforeach
             </select>
 
             <select name="tingkat_id" onchange="this.form.submit()" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none min-w-[140px] text-gray-600">
                 <option value="">Semua Tingkat</option>
-                @foreach($tingkats as $t)
+                @foreach($tingkat as $t)
                     <option value="{{ $t->id }}" {{ request('tingkat_id') == $t->id ? 'selected' : '' }}>{{ $t->nama_tingkat }}</option>
                 @endforeach
             </select>
 
             <select name="tahun_ajaran_id" onchange="this.form.submit()" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none min-w-[140px] text-gray-600">
                 <option value="">Semua Tahun</option>
-                @foreach($tahunAjarans as $ta)
+                @foreach($tahunAjaran as $ta)
                     <option value="{{ $ta->id }}" {{ request('tahun_ajaran_id') == $ta->id ? 'selected' : '' }}>{{ $ta->tahun }}</option>
                 @endforeach
             </select>
@@ -71,12 +71,12 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 text-sm">
-                @forelse($prestasis as $index => $item)
+                @forelse($prestasi as $index => $item)
                 <tr class="hover:bg-gray-50/50 transition-colors">
-                    <td class="px-6 py-4 text-gray-400">{{ $prestasis->firstItem() + $index }}</td>
+                    <td class="px-6 py-4 text-gray-400">{{ $prestasi->firstItem() + $index }}</td>
                     <td class="px-6 py-4 font-bold text-gray-800">{{ $item->nama_lomba }}</td>
                     <td class="px-6 py-4 text-gray-600">{{ $item->siswa->nama }}</td>
-                    <td class="px-6 py-4 text-gray-600">{{ $item->kategori->nama_kategori }}</td>
+                    <td class="px-6 py-4 text-gray-600">{{ $item->kategori->jenis_prestasi }} ({{ $item->kategori->nama_kategori }})</td>
                     <td class="px-6 py-4 text-gray-600">{{ $item->tingkat->nama_tingkat }}</td>
                     <td class="px-6 py-4 text-gray-600">{{ $item->tanggal->format('d M Y') }}</td>
                     <td class="px-6 py-4 text-center text-gray-600">{{ $item->tahunAjaran->tahun }}</td>
@@ -104,10 +104,10 @@
     
     <div class="p-5 border-t border-gray-50 flex justify-between items-center text-sm text-gray-500">
         <div>
-            Menampilkan {{ $prestasis->firstItem() ?? 0 }} - {{ $prestasis->lastItem() ?? 0 }} dari {{ $prestasis->total() }} data
+            Menampilkan {{ $prestasi->firstItem() ?? 0 }} - {{ $prestasi->lastItem() ?? 0 }} dari {{ $prestasi->total() }} data
         </div>
         <div>
-            {{ $prestasis->links() }}
+            {{ $prestasi->links() }}
         </div>
     </div>
 </div>

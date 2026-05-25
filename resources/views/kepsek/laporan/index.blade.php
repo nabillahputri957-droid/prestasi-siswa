@@ -17,7 +17,7 @@
                         <label class="block text-xs text-gray-500 mb-1">Tahun Ajaran</label>
                         <select name="tahun_ajaran_id" class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none">
                             <option value="">Semua Tahun Ajaran</option>
-                            @foreach($tahunAjarans as $ta)
+                            @foreach($tahunAjaran as $ta)
                                 <option value="{{ $ta->id }}" {{ request('tahun_ajaran_id') == $ta->id ? 'selected' : '' }}>{{ $ta->tahun }}</option>
                             @endforeach
                         </select>
@@ -26,8 +26,8 @@
                         <label class="block text-xs text-gray-500 mb-1">Kategori</label>
                         <select name="kategori_id" class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none">
                             <option value="">Semua Kategori</option>
-                            @foreach($kategoris as $k)
-                                <option value="{{ $k->id }}" {{ request('kategori_id') == $k->id ? 'selected' : '' }}>{{ $k->nama_kategori }}</option>
+                            @foreach($kategori as $k)
+                                <option value="{{ $k->id }}" {{ request('kategori_id') == $k->id ? 'selected' : '' }}>{{ $k->jenis_prestasi }} ({{ $k->nama_kategori }})</option>
                             @endforeach
                         </select>
                     </div>
@@ -35,7 +35,7 @@
                         <label class="block text-xs text-gray-500 mb-1">Siswa</label>
                         <select name="siswa_id" class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none">
                             <option value="">Semua Siswa</option>
-                            @foreach($siswas as $siswa)
+                            @foreach($siswa as $siswa)
                                 <option value="{{ $siswa->id }}" {{ request('siswa_id') == $siswa->id ? 'selected' : '' }}>{{ $siswa->nama }}</option>
                             @endforeach
                         </select>
@@ -103,11 +103,11 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 text-sm">
-                    @forelse($prestasis as $item)
+                    @forelse($prestasi as $item)
                     <tr>
                         <td class="px-6 py-4 text-gray-800 font-bold">{{ $item->nama_lomba }}</td>
                         <td class="px-6 py-4 text-gray-600">{{ $item->siswa->nama }}</td>
-                        <td class="px-6 py-4 text-gray-600">{{ $item->kategori->nama_kategori }}</td>
+                        <td class="px-6 py-4 text-gray-600">{{ $item->kategori->jenis_prestasi }} ({{ $item->kategori->nama_kategori }})</td>
                         <td class="px-6 py-4 text-gray-600">{{ $item->tingkat->nama_tingkat }}</td>
                         <td class="px-6 py-4 text-gray-600">{{ $item->tanggal->format('d/m/Y') }}</td>
                         <td class="px-6 py-4 text-center">
@@ -126,7 +126,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="p-4 border-t border-gray-50">{{ $prestasis->links() }}</div>
+        <div class="p-4 border-t border-gray-50">{{ $prestasi->links() }}</div>
     </div>
 </div>
 @endsection

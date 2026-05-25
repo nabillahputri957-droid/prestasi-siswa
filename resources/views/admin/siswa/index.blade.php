@@ -34,19 +34,19 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 text-sm">
-                @forelse($siswas as $index => $siswa)
+                @forelse($siswa as $index => $item)
                 <tr class="hover:bg-gray-50/50 transition-colors">
-                    <td class="px-6 py-4 text-gray-500">{{ $siswas->firstItem() + $index }}</td>
-                    <td class="px-6 py-4 font-medium text-gray-800">{{ $siswa->nisn }}</td>
-                    <td class="px-6 py-4 text-gray-600">{{ $siswa->nama }}</td>
+                    <td class="px-6 py-4 text-gray-500">{{ $siswa->firstItem() + $index }}</td>
+                    <td class="px-6 py-4 font-medium text-gray-800">{{ $item->nisn }}</td>
+                    <td class="px-6 py-4 text-gray-600">{{ $item->nama }}</td>
                     <td class="px-6 py-4 text-center">
-                        <span class="px-2 py-1 rounded text-xs {{ $siswa->kelas ? 'bg-blue-50 text-blue-600' : 'bg-gray-50 text-gray-400 italic' }}">
-                            {{ $siswa->kelas->nama_kelas ?? 'Tanpa Kelas' }}
+                        <span class="px-2 py-1 rounded text-xs {{ $item->kelas ? 'bg-blue-50 text-blue-600' : 'bg-gray-50 text-gray-400 italic' }}">
+                            {{ $item->kelas->nama_kelas ?? 'Tanpa Kelas' }}
                         </span>
                     </td>
-                    <td class="px-6 py-4 text-gray-600">{{ $siswa->tahunAjaran->tahun ?? '-' }}</td>
+                    <td class="px-6 py-4 text-gray-600">{{ $item->tahunAjaran->tahun ?? '-' }}</td>
                     <td class="px-6 py-4 text-center">
-                        @if($siswa->status == 'aktif')
+                        @if($item->status == 'aktif')
                             <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Aktif</span>
                         @else
                             <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Alumni</span>
@@ -54,10 +54,10 @@
                     </td>
                     <td class="px-6 py-4 text-center">
                         <div class="flex items-center justify-center gap-3">
-                            <button onclick="openEditSiswaModal({{ json_encode($siswa) }})" class="text-blue-500 hover:text-blue-700 transition-colors">
+                            <button onclick="openEditSiswaModal({{ json_encode($item) }})" class="text-blue-500 hover:text-blue-700 transition-colors">
                                 <i class="fa-regular fa-pen-to-square text-lg"></i>
                             </button>
-                            <form action="{{ route('admin.siswa.destroy', $siswa->id) }}" method="POST" class="inline-block">
+                            <form action="{{ route('admin.siswa.destroy', $item->id) }}" method="POST" class="inline-block">
                                 @csrf @method('DELETE')
                                 <button type="button" class="text-red-500 hover:text-red-700 btn-delete">
                                     <i class="fa-regular fa-trash-can text-lg"></i>
@@ -74,7 +74,7 @@
             </tbody>
         </table>
     </div>
-    <div class="p-5 border-t border-gray-50">{{ $siswas->links() }}</div>
+    <div class="p-5 border-t border-gray-50">{{ $siswa->links() }}</div>
 </div>
 
 <div id="modal-siswa" class="fixed inset-0 z-50 hidden bg-gray-900/10 backdrop-blur-md flex items-center justify-center transition-opacity">
@@ -111,8 +111,8 @@
                     <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Kelas</label>
                     <select name="kelas_id" id="input-kelas" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
                         <option value="">-- Pilih Kelas --</option>
-                        @foreach($kelases as $kelas)
-                            <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
+                        @foreach($kelas as $k)
+                            <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -121,7 +121,7 @@
                     <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Tahun Ajaran</label>
                     <select name="tahun_ajaran_id" id="input-ta" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
                         <option value="">-- Pilih TA --</option>
-                        @foreach($tahunAjarans as $ta)
+                        @foreach($tahunAjaran as $ta)
                             <option value="{{ $ta->id }}">{{ $ta->tahun }}</option>
                         @endforeach
                     </select>

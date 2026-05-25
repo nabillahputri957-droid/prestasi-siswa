@@ -10,8 +10,8 @@ class KelasController extends Controller
 {
     public function index()
     {
-        $kelases = Kelas::latest()->paginate(10);
-        return view('admin.kelas.index', compact('kelases'));
+        $kelas = Kelas::latest()->paginate(10);
+        return view('admin.kelas.index', compact('kelas'));
     }
 
     public function store(Request $request)

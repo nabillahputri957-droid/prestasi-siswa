@@ -26,8 +26,8 @@
                         <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
                         <select name="kategori_id" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none text-sm">
                             <option value="">Pilih kategori</option>
-                            @foreach($kategoris as $k)
-                                <option value="{{ $k->id }}" {{ old('kategori_id', $prestasi->kategori_id ?? '') == $k->id ? 'selected' : '' }}>{{ $k->nama_kategori }}</option>
+                            @foreach($kategori as $k)
+                                <option value="{{ $k->id }}" {{ old('kategori_id', $prestasi->kategori_id ?? '') == $k->id ? 'selected' : '' }}>{{ $k->jenis_prestasi }} ({{ $k->nama_kategori }})</option>
                             @endforeach
                         </select>
                     </div>
@@ -35,7 +35,7 @@
                         <label class="block text-sm font-medium text-gray-700 mb-2">Tingkat</label>
                         <select name="tingkat_id" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none text-sm">
                             <option value="">Pilih tingkat</option>
-                            @foreach($tingkats as $t)
+                            @foreach($tingkat as $t)
                                 <option value="{{ $t->id }}" {{ old('tingkat_id', $prestasi->tingkat_id ?? '') == $t->id ? 'selected' : '' }}>{{ $t->nama_tingkat }}</option>
                             @endforeach
                         </select>
@@ -64,7 +64,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-2">Nama Siswa</label>
                     <select name="siswa_id" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none text-sm">
                         <option value="">Pilih siswa</option>
-                        @foreach($siswas as $siswa)
+                        @foreach($siswa as $siswa)
                             <option value="{{ $siswa->id }}" {{ old('siswa_id', $prestasi->siswa_id ?? '') == $siswa->id ? 'selected' : '' }}>{{ $siswa->nama }} ({{ $siswa->nisn }})</option>
                         @endforeach
                     </select>

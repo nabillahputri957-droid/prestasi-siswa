@@ -23,9 +23,9 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 text-sm">
-                @forelse($tingkats as $index => $item)
+                @forelse($tingkat as $index => $item)
                 <tr class="hover:bg-gray-50/50 transition-colors">
-                    <td class="px-6 py-4 text-gray-500">{{ $tingkats->firstItem() + $index }}</td>
+                    <td class="px-6 py-4 text-gray-500">{{ $tingkat->firstItem() + $index }}</td>
                     <td class="px-6 py-4 font-medium text-gray-800">{{ $item->nama_tingkat }}</td>
                     <td class="px-6 py-4 text-center">
                         <div class="flex items-center justify-center gap-3">
@@ -45,7 +45,7 @@
             </tbody>
         </table>
     </div>
-    <div class="p-5 border-t border-gray-50">{{ $tingkats->links() }}</div>
+    <div class="p-5 border-t border-gray-50">{{ $tingkat->links() }}</div>
 </div>
 
 <div id="modal-tambah" class="fixed inset-0 z-50 hidden bg-gray-900/10 backdrop-blur-md flex items-center justify-center transition-opacity">

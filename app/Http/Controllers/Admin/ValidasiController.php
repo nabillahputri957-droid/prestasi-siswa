@@ -13,9 +13,9 @@ class ValidasiController extends Controller
 {
     public function index(Request $request)
     {
-        $kategoris = Kategori::orderBy('nama_kategori')->get();
-        $tingkats = Tingkat::orderBy('nama_tingkat')->get();
-        $tahunAjarans = TahunAjaran::orderBy('tahun', 'desc')->get();
+        $kategori = Kategori::orderBy('nama_kategori')->get();
+        $tingkat = Tingkat::orderBy('nama_tingkat')->get();
+        $tahunAjaran = TahunAjaran::orderBy('tahun', 'desc')->get();
         $counts = [
             'semua' => Prestasi::count(),
             'pending' => Prestasi::where('status', 'pending')->count(),
@@ -52,8 +52,8 @@ class ValidasiController extends Controller
             $query->where('tahun_ajaran_id', $request->tahun_ajaran_id);
         }
 
-        $prestasis = $query->paginate(10)->withQueryString(); // withQueryString agar filter tidak hilang saat pindah halaman pagination
+        $prestasi = $query->paginate(10)->withQueryString(); // withQueryString agar filter tidak hilang saat pindah halaman pagination
 
-        return view('admin.validasi.index', compact('prestasis', 'kategoris', 'tingkats', 'tahunAjarans', 'counts', 'currentStatus'));
+        return view('admin.validasi.index', compact('prestasi', 'kategori', 'tingkat', 'tahunAjaran', 'counts', 'currentStatus'));
     }
 }

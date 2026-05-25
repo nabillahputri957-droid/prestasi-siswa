@@ -33,19 +33,19 @@
                 <div class="flex-1">
                     <select name="kategori_id" class="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-xl focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm font-medium text-slate-600">
                         <option value="">Semua Kategori</option>
-                        @foreach($kategoris as $k) <option value="{{ $k->id }}" {{ request('kategori_id') == $k->id ? 'selected' : '' }}>{{ $k->nama_kategori }}</option> @endforeach
+                        @foreach($kategori as $k) <option value="{{ $k->id }}" {{ request('kategori_id') == $k->id ? 'selected' : '' }}>{{ $k->jenis_prestasi }} ({{ $k->nama_kategori }})</option> @endforeach
                     </select>
                 </div>
                 <div class="flex-1">
                     <select name="tingkat_id" class="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-xl focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm font-medium text-slate-600">
                         <option value="">Semua Tingkat</option>
-                        @foreach($tingkats as $t) <option value="{{ $t->id }}" {{ request('tingkat_id') == $t->id ? 'selected' : '' }}>{{ $t->nama_tingkat }}</option> @endforeach
+                        @foreach($tingkat as $t) <option value="{{ $t->id }}" {{ request('tingkat_id') == $t->id ? 'selected' : '' }}>{{ $t->nama_tingkat }}</option> @endforeach
                     </select>
                 </div>
                 <div class="flex-1">
                     <select name="tahun_ajaran_id" class="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-xl focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm font-medium text-slate-600">
                         <option value="">Semua Tahun</option>
-                        @foreach($tahunAjarans as $ta) <option value="{{ $ta->id }}" {{ request('tahun_ajaran_id') == $ta->id ? 'selected' : '' }}>{{ $ta->tahun }}</option> @endforeach
+                        @foreach($tahunAjaran as $ta) <option value="{{ $ta->id }}" {{ request('tahun_ajaran_id') == $ta->id ? 'selected' : '' }}>{{ $ta->tahun }}</option> @endforeach
                     </select>
                 </div>
                 <button type="submit" class="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-md shadow-blue-500/20 whitespace-nowrap">
@@ -55,7 +55,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @forelse($prestasis as $item)
+            @forelse($prestasi as $item)
             <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 group flex flex-col">
                 <div class="h-48 bg-slate-100 relative overflow-hidden">
                     @php $ext = pathinfo($item->file_bukti, PATHINFO_EXTENSION); @endphp
@@ -76,7 +76,7 @@
 
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex gap-2 mb-3 flex-wrap">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-blue-50 px-2.5 py-1 rounded-md">{{ $item->kategori->nama_kategori }}</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-blue-50 px-2.5 py-1 rounded-md">{{ $item->kategori->jenis_prestasi }} ({{ $item->kategori->nama_kategori }})</span>
                         <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md">{{ $item->tingkat->nama_tingkat }}</span>
                     </div>
                     
@@ -106,9 +106,9 @@
             @endforelse
         </div>
 
-        @if($prestasis->hasPages())
+        @if($prestasi->hasPages())
         <div class="mt-12 flex justify-center">
-            {{ $prestasis->links() }}
+            {{ $prestasi->links() }}
         </div>
         @endif
 

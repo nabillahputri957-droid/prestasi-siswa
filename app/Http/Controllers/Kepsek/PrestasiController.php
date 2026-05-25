@@ -14,9 +14,9 @@ class PrestasiController extends Controller
     public function index(Request $request)
     {
         // 1. Ambil Data Master untuk Dropdown Filter
-        $kategoris = Kategori::orderBy('nama_kategori')->get();
-        $tingkats = Tingkat::orderBy('nama_tingkat')->get();
-        $tahunAjarans = TahunAjaran::orderBy('tahun', 'desc')->get();
+        $kategori = Kategori::orderBy('nama_kategori')->get();
+        $tingkat = Tingkat::orderBy('nama_tingkat')->get();
+        $tahunAjaran = TahunAjaran::orderBy('tahun', 'desc')->get();
 
         // 2. Base Query dengan Eager Loading agar tidak N+1 Problem
         $query = Prestasi::with(['siswa', 'kategori', 'tingkat', 'tahunAjaran']);
@@ -48,8 +48,8 @@ class PrestasiController extends Controller
         }
 
         // 5. Eksekusi Pagination dan bawa parameter filter ke link pagination
-        $prestasis = $query->latest()->paginate(10)->withQueryString();
+        $prestasi = $query->latest()->paginate(10)->withQueryString();
 
-        return view('kepsek.prestasi.index', compact('prestasis', 'kategoris', 'tingkats', 'tahunAjarans'));
+        return view('kepsek.prestasi.index', compact('prestasi', 'kategori', 'tingkat', 'tahunAjaran'));
     }
 }

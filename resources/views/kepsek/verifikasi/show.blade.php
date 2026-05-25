@@ -20,7 +20,7 @@
         <div class="space-y-4 text-sm">
             <div><p class="text-gray-400 mb-1">Nama Lomba</p><p class="font-bold text-gray-800">{{ $prestasi->nama_lomba }}</p></div>
             <div class="grid grid-cols-2 gap-4">
-                <div><p class="text-gray-400 mb-1">Kategori</p><p class="font-bold text-gray-800">{{ $prestasi->kategori->nama_kategori }}</p></div>
+                <div><p class="text-gray-400 mb-1">Kategori</p><p class="font-bold text-gray-800">{{ $prestasi->kategori->jenis_prestasi }} ({{ $prestasi->kategori->nama_kategori }})</p></div>
                 <div><p class="text-gray-400 mb-1">Tingkat</p><p class="font-bold text-gray-800">{{ $prestasi->tingkat->nama_tingkat }}</p></div>
             </div>
             <div><p class="text-gray-400 mb-1">Tanggal</p><p class="font-bold text-gray-800">{{ $prestasi->tanggal->format('d F Y') }}</p></div>

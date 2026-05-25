@@ -30,7 +30,7 @@
             
             <select name="kategori" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm outline-none">
                 <option value="">Semua Kategori</option>
-                @foreach($kategoris as $k) <option value="{{ $k->id }}">{{ $k->nama_kategori }}</option> @endforeach
+                @foreach($kategori as $k) <option value="{{ $k->id }}">{{ $k->jenis_prestasi }} ({{ $k->nama_kategori }})</option> @endforeach
             </select>
 
             <button type="submit" class="bg-white border border-gray-200 text-gray-600 px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50">
@@ -53,12 +53,12 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 text-sm">
-                @forelse($prestasis as $index => $item)
+                @forelse($prestasi as $index => $item)
                 <tr class="hover:bg-gray-50/50 transition-colors">
-                    <td class="px-6 py-4 text-gray-400">{{ $prestasis->firstItem() + $index }}</td>
+                    <td class="px-6 py-4 text-gray-400">{{ $prestasi->firstItem() + $index }}</td>
                     <td class="px-6 py-4 font-bold text-gray-800">{{ $item->nama_lomba }}</td>
                     <td class="px-6 py-4 text-gray-600">{{ $item->siswa->nama }}</td>
-                    <td class="px-6 py-4 text-center text-gray-600">{{ $item->kategori->nama_kategori }}</td>
+                    <td class="px-6 py-4 text-center text-gray-600">{{ $item->kategori->jenis_prestasi }} ({{ $item->kategori->nama_kategori }})</td>
                     <td class="px-6 py-4 text-center text-gray-600">{{ $item->tingkat->nama_tingkat }}</td>
                     <td class="px-6 py-4 text-center text-gray-600">{{ $item->tanggal->format('d M Y') }}</td>
                     <td class="px-6 py-4 text-center">
@@ -74,6 +74,6 @@
             </tbody>
         </table>
     </div>
-    <div class="p-5 border-t border-gray-50">{{ $prestasis->links() }}</div>
+    <div class="p-5 border-t border-gray-50">{{ $prestasi->links() }}</div>
 </div>
 @endsection

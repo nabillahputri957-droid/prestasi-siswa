@@ -10,8 +10,8 @@ class TahunAjaranController extends Controller
 {
     public function index()
     {
-        $tahunAjarans = TahunAjaran::latest()->paginate(10);
-        return view('admin.tahun_ajaran.index', compact('tahunAjarans'));
+        $tahunAjaran = TahunAjaran::latest()->paginate(10);
+        return view('admin.tahun_ajaran.index', compact('tahunAjaran'));
     }
 
     public function create()

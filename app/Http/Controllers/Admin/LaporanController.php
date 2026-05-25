@@ -16,9 +16,9 @@ class LaporanController extends Controller
 {
     public function index(Request $request)
     {
-        $tahunAjarans = TahunAjaran::orderBy('tahun', 'desc')->get();
-        $kategoris = Kategori::orderBy('nama_kategori')->get();
-        $siswas = Siswa::orderBy('nama')->get();
+        $tahunAjaran = TahunAjaran::orderBy('tahun', 'desc')->get();
+        $kategori = Kategori::orderBy('nama_kategori')->get();
+        $siswa = Siswa::orderBy('nama')->get();
 
         // Base Query
         $query = Prestasi::with(['siswa', 'kategori', 'tingkat', 'tahunAjaran']);
@@ -42,9 +42,9 @@ class LaporanController extends Controller
             'ditolak' => (clone $query)->where('status', 'ditolak')->count(),
         ];
 
-        $prestasis = $query->latest()->paginate(10)->withQueryString();
+        $prestasi = $query->latest()->paginate(10)->withQueryString();
 
-        return view('admin.laporan.index', compact('prestasis', 'tahunAjarans', 'kategoris', 'siswas', 'stats'));
+        return view('admin.laporan.index', compact('prestasi', 'tahunAjaran', 'kategori', 'siswa', 'stats'));
     }
 
     public function exportPdf(Request $request)
@@ -55,10 +55,10 @@ class LaporanController extends Controller
         if ($request->filled('kategori_id')) $query->where('kategori_id', $request->kategori_id);
         if ($request->filled('siswa_id')) $query->where('siswa_id', $request->siswa_id);
 
-        $prestasis = $query->latest()->get();
+        $prestasi = $query->latest()->get();
 
         // Render view ke PDF (A4 Landscape)
-        $pdf = Pdf::loadView('admin.laporan.pdf', compact('prestasis'))->setPaper('a4', 'landscape');
+        $pdf = Pdf::loadView('admin.laporan.pdf', compact('prestasi'))->setPaper('a4', 'landscape');
         
         return $pdf->download('laporan_prestasi_siswa.pdf');
     }

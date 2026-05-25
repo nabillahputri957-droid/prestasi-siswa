@@ -49,11 +49,7 @@
             <i class="fa-solid fa-trophy w-5 text-center"></i> Data Prestasi
         </a>
 
-       <a href="{{ route('kepsek.laporan.index') }}" 
-           class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
-                  {{ request()->routeIs('kepsek.laporan.*') ? 'bg-primary-light text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-            <i class="fa-solid fa-file-pdf w-5 text-center"></i> Laporan
-        </a>
+    
 
         <div class="pt-4 mt-4 border-t border-gray-100 space-y-1">
             @php $unreadCountKepsek = auth()->user()->unreadNotifications->count(); @endphp

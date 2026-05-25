@@ -43,17 +43,17 @@ class DashboardController extends Controller
         ];
 
         // 3. Data Grafik Doughnut (Prestasi per Kategori)
-        $kategoris = Kategori::withCount('prestasi')->get();
+        $kategori = Kategori::withCount('prestasi')->get();
         
         $chartKategori = [
-            'labels' => $kategoris->pluck('nama_kategori')->toArray(),
-            'data' => $kategoris->pluck('prestasi_count')->toArray(),
+            'labels' => $kategori->pluck('nama_kategori')->toArray(),
+            'data' => $kategori->pluck('prestasi_count')->toArray(),
         ];
 
         // Siapkan warna dinamis untuk custom legend di HTML
         $bgColors = ['bg-blue-500', 'bg-indigo-500', 'bg-sky-400', 'bg-cyan-500', 'bg-teal-400', 'bg-blue-300'];
         $kategoriDetails = [];
-        foreach($kategoris as $index => $kategori) {
+        foreach($kategori as $index => $kategori) {
             if ($kategori->prestasi_count > 0) { // Hanya tampilkan di legend jika ada datanya
                 $colorClass = $bgColors[$index % count($bgColors)];
                 $kategoriDetails[$kategori->nama_kategori] = [$colorClass, $kategori->prestasi_count];

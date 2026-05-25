@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('pengaturans', function (Blueprint $table) {
+        Schema::create('pengaturan', function (Blueprint $table) {
             $table->id();
             $table->string('nama_sekolah')->default('SMP Negeri 1 Example');
             $table->text('alamat')->nullable();
@@ -31,6 +31,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('pengaturans');
+        Schema::dropIfExists('pengaturan');
     }
 };

@@ -10,8 +10,8 @@ class TingkatController extends Controller
 {
     public function index()
     {
-        $tingkats = Tingkat::latest()->paginate(10);
-        return view('admin.tingkat.index', compact('tingkats'));
+        $tingkat = Tingkat::latest()->paginate(10);
+        return view('admin.tingkat.index', compact('tingkat'));
     }
 
     public function store(Request $request)

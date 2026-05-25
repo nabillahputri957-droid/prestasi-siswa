@@ -30,7 +30,7 @@
 
                 <div class="p-5 flex-1 flex flex-col">
                     <div class="flex justify-between items-center mb-3">
-                        <span class="text-[10px] font-medium text-slate-500">{{ $item->kategori->nama_kategori }}</span>
+                        <span class="text-[10px] font-medium text-slate-500">{{ $item->kategori->jenis_prestasi }} ({{ $item->kategori->nama_kategori }})</span>
                         <span class="text-[10px] font-medium text-slate-400">{{ $item->tanggal->format('M Y') }}</span>
                     </div>
                     <h4 class="text-sm font-bold text-slate-900 mb-2 leading-snug line-clamp-2 group-hover:text-primary transition-colors">{{ $item->nama_lomba }}</h4>

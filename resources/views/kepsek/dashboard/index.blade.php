@@ -72,7 +72,7 @@
                     <tr class="hover:bg-gray-50/50 transition-colors">
                         <td class="px-6 py-4 font-medium text-gray-800">{{ $item->nama_lomba }}</td>
                         <td class="px-6 py-4 text-gray-600">{{ $item->siswa->nama }}</td>
-                        <td class="px-6 py-4 text-center text-gray-600">{{ $item->kategori->nama_kategori }}</td>
+                        <td class="px-6 py-4 text-center text-gray-600">{{ $item->kategori->jenis_prestasi }} ({{ $item->kategori->nama_kategori }})</td>
                         <td class="px-6 py-4 text-center text-gray-600">{{ $item->created_at->diffForHumans() }}</td>
                         <td class="px-6 py-4 text-center">
                             <a href="#" class="inline-block bg-orange-50 text-orange-600 hover:bg-orange-100 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">

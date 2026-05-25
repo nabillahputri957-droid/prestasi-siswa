@@ -23,17 +23,17 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 text-sm">
-                @forelse($kelases as $index => $kelas)
+                @forelse($kelas as $index => $item)
                 <tr class="hover:bg-gray-50/50 transition-colors">
-                    <td class="px-6 py-4 text-gray-500">{{ $kelases->firstItem() + $index }}</td>
-                    <td class="px-6 py-4 font-medium text-gray-800">{{ $kelas->nama_kelas }}</td>
+                    <td class="px-6 py-4 text-gray-500">{{ $kelas->firstItem() + $index }}</td>
+                    <td class="px-6 py-4 font-medium text-gray-800">{{ $item->nama_kelas }}</td>
                     <td class="px-6 py-4 text-center">
                         <div class="flex items-center justify-center gap-3">
-                            <button onclick="openEditModal({{ $kelas->id }}, '{{ $kelas->nama_kelas }}')" class="text-blue-500 hover:text-blue-700 transition-colors" title="Edit">
+                            <button onclick="openEditModal({{ $item->id }}, '{{ $item->nama_kelas }}')" class="text-blue-500 hover:text-blue-700 transition-colors" title="Edit">
                                 <i class="fa-regular fa-pen-to-square text-lg"></i>
                             </button>
 
-                            <form action="{{ route('admin.kelas.destroy', $kelas->id) }}" method="POST" class="delete-form inline-block">
+                            <form action="{{ route('admin.kelas.destroy', $item->id) }}" method="POST" class="delete-form inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="text-red-500 hover:text-red-700 transition-colors btn-delete" title="Hapus">
@@ -54,7 +54,7 @@
             </tbody>
         </table>
     </div>
-    <div class="p-5 border-t border-gray-50">{{ $kelases->links() }}</div>
+    <div class="p-5 border-t border-gray-50">{{ $kelas->links() }}</div>
 </div>
 
 <div id="modal-tambah" class="fixed inset-0 z-50 hidden bg-gray-900/10 backdrop-blur-md flex items-center justify-center transition-opacity">

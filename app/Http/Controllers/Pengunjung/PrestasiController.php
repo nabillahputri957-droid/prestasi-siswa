@@ -26,9 +26,9 @@ class PrestasiController extends Controller
     // Private method agar kode tidak berulang (DRY)
     private function getPrestasiData(Request $request, $title, $isUnggulan)
     {
-        $kategoris = Kategori::orderBy('nama_kategori')->get();
-        $tingkats = Tingkat::orderBy('nama_tingkat')->get();
-        $tahunAjarans = TahunAjaran::orderBy('tahun', 'desc')->get();
+        $kategori = Kategori::orderBy('nama_kategori')->get();
+        $tingkat = Tingkat::orderBy('nama_tingkat')->get();
+        $tahunAjaran = TahunAjaran::orderBy('tahun', 'desc')->get();
 
         $query = Prestasi::with(['siswa.kelas', 'kategori', 'tingkat', 'tahunAjaran'])
                          ->where('status', 'disetujui');
@@ -58,9 +58,9 @@ class PrestasiController extends Controller
             $query->where('tahun_ajaran_id', $request->tahun_ajaran_id);
         }
 
-        $prestasis = $query->latest('tanggal')->paginate(12)->withQueryString();
+        $prestasi = $query->latest('tanggal')->paginate(12)->withQueryString();
 
         // Kita gunakan 1 file view yang sama untuk index & unggulan agar efisien
-        return view('pengunjung.prestasi.index', compact('prestasis', 'kategoris', 'tingkats', 'tahunAjarans', 'title', 'isUnggulan'));
+        return view('pengunjung.prestasi.index', compact('prestasi', 'kategori', 'tingkat', 'tahunAjaran', 'title', 'isUnggulan'));
     }
 }

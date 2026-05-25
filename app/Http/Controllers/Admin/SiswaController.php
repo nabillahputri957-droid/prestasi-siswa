@@ -13,7 +13,7 @@ class SiswaController extends Controller
     public function index(Request $request)
     {
         $search = $request->search;
-        $siswas = Siswa::with(['tahunAjaran', 'kelas'])
+        $siswa = Siswa::with(['tahunAjaran', 'kelas'])
             ->when($search, function($query, $search) {
                 return $query->where('nama', 'like', "%{$search}%")
                              ->orWhere('nisn', 'like', "%{$search}%");
@@ -22,10 +22,10 @@ class SiswaController extends Controller
             ->paginate(10);
 
         // Data untuk dropdown di Modal
-        $kelases = Kelas::orderBy('nama_kelas', 'asc')->get();
-        $tahunAjarans = TahunAjaran::orderBy('tahun', 'desc')->get();
+        $kelas = Kelas::orderBy('nama_kelas', 'asc')->get();
+        $tahunAjaran = TahunAjaran::orderBy('tahun', 'desc')->get();
             
-        return view('admin.siswa.index', compact('siswas', 'kelases', 'tahunAjarans'));
+        return view('admin.siswa.index', compact('siswa', 'kelas', 'tahunAjaran'));
     }
 
     public function store(Request $request)

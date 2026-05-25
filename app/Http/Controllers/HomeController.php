@@ -16,7 +16,7 @@ class HomeController extends Controller
         $totalSiswa = Siswa::count();
 
         // 2. Data Master untuk Filter Timeline
-        $tahunAjarans = TahunAjaran::orderBy('tahun', 'desc')->get();
+        $tahunAjaran = TahunAjaran::orderBy('tahun', 'desc')->get();
 
         // 3. Data Prestasi Unggulan (Ditampilkan 5 terbaru di Home)
         $unggulans = Prestasi::with(['siswa', 'kategori', 'tingkat'])
@@ -37,10 +37,10 @@ class HomeController extends Controller
         }
 
         // Paginasi Timeline 5 data per halaman
-        $prestasis = $queryTimeline->latest('tanggal')->paginate(5)->withQueryString();
+        $prestasi = $queryTimeline->latest('tanggal')->paginate(5)->withQueryString();
 
         return view('pengunjung.home.index', compact(
-            'totalPrestasi', 'totalSiswa', 'tahunAjarans', 'unggulans', 'prestasis'
+            'totalPrestasi', 'totalSiswa', 'tahunAjaran', 'unggulans', 'prestasi'
         ));
     }
 }

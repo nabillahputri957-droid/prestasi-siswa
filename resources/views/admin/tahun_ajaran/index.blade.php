@@ -24,9 +24,9 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 text-sm">
-                @forelse($tahunAjarans as $index => $ta)
+                @forelse($tahunAjaran as $index => $ta)
                 <tr class="hover:bg-gray-50/50 transition-colors">
-                    <td class="px-6 py-4 text-gray-500">{{ $tahunAjarans->firstItem() + $index }}</td>
+                    <td class="px-6 py-4 text-gray-500">{{ $tahunAjaran->firstItem() + $index }}</td>
                     <td class="px-6 py-4 font-medium text-gray-800">{{ $ta->tahun }}</td>
                     <td class="px-6 py-4 text-center">
                         @if($ta->status == 'aktif')
@@ -70,7 +70,7 @@
     </div>
     
     <div class="p-5 border-t border-gray-50">
-        {{ $tahunAjarans->links() }}
+        {{ $tahunAjaran->links() }}
     </div>
 </div>
 

@@ -25,16 +25,16 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 text-sm">
-                @forelse($prestasis as $index => $item)
+                @forelse($prestasi as $index => $item)
                 <tr class="hover:bg-gray-50/50 transition-colors">
-                    <td class="px-6 py-4 text-gray-500">{{ $prestasis->firstItem() + $index }}</td>
+                    <td class="px-6 py-4 text-gray-500">{{ $prestasi->firstItem() + $index }}</td>
                     <td class="px-6 py-4">
                         <p class="font-medium text-gray-800">{{ $item->nama_lomba }}</p>
                         @if($item->unggulan) <span class="text-[10px] bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full font-bold"><i class="fa-solid fa-star text-yellow-500 mr-1"></i>Unggulan</span> @endif
                     </td>
                     <td class="px-6 py-4 text-gray-600">{{ $item->siswa->nama }}</td>
                     <td class="px-6 py-4 text-center">
-                        <span class="block text-gray-800 font-medium">{{ $item->kategori->nama_kategori }}</span>
+                        <span class="block text-gray-800 font-medium">{{ $item->kategori->jenis_prestasi }} ({{ $item->kategori->nama_kategori }})</span>
                         <span class="block text-xs text-gray-500">{{ $item->tingkat->nama_tingkat }}</span>
                     </td>
                     <td class="px-6 py-4 text-center">
@@ -63,7 +63,7 @@
             </tbody>
         </table>
     </div>
-    <div class="p-5 border-t border-gray-50">{{ $prestasis->links() }}</div>
+    <div class="p-5 border-t border-gray-50">{{ $prestasi->links() }}</div>
 </div>
 
 <script>

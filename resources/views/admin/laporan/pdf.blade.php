@@ -15,9 +15,41 @@
 </head>
 <body>
 
-    <div class="header">
-        <h2>LAPORAN DATA PRESTASI SISWA</h2>
-        <p>Dicetak pada: {{ date('d F Y H:i') }}</p>
+    @php
+        $pengaturan = \App\Models\Pengaturan::first();
+    @endphp
+
+    <div class="kop-surat" style="text-align: center; border-bottom: 3px double #000; padding-bottom: 10px; margin-bottom: 20px;">
+        <table style="width: 100%; border: none; margin: 0; padding: 0;">
+            <tr>
+                <td style="width: 80px; border: none; text-align: center; vertical-align: middle;">
+                    @if($pengaturan && $pengaturan->logo_kop)
+                        <?php 
+                            $path = public_path('storage/pengaturan/' . $pengaturan->logo_kop);
+                            $type = pathinfo($path, PATHINFO_EXTENSION);
+                            if (file_exists($path)) {
+                                $data = file_get_contents($path);
+                                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                                echo '<img src="'.$base64.'" style="max-width: 80px; max-height: 80px;">';
+                            }
+                        ?>
+                    @endif
+                </td>
+                <td style="border: none; text-align: center; vertical-align: middle; line-height: 1.2;">
+                    <span style="font-size: 14px; text-transform: uppercase; color: #333;">{{ $pengaturan->kop_baris_1 ?? 'PEMERINTAH KABUPATEN BATU BARA' }}</span><br>
+                    <span style="font-size: 15px; font-weight: bold; text-transform: uppercase; color: #111;">{{ $pengaturan->kop_baris_2 ?? 'DINAS PENDIDIKAN' }}</span><br>
+                    <span style="font-size: 18px; font-weight: bold; text-transform: uppercase; color: #000;">{{ $pengaturan->kop_baris_3 ?? 'UPT. SD NEGERI 31 TANAH TINGGI' }}</span><br>
+                    <span style="font-size: 11px; color: #444;">{{ $pengaturan->kop_baris_4 ?? 'Jln Tanah Lapang Dusun VII Desa Tanah Tinggi Kecamatan Air Putih' }}</span><br>
+                    <span style="font-size: 11px; color: #444;">{{ $pengaturan->kop_baris_5 ?? 'NPSN 10204282 Kode Pos 21256' }}</span>
+                </td>
+                <td style="width: 80px; border: none;"></td> <!-- Spacer to balance layout -->
+            </tr>
+        </table>
+    </div>
+
+    <div class="header" style="text-align: center; margin-bottom: 15px;">
+        <h3 style="margin:0;">LAPORAN DATA PRESTASI SISWA</h3>
+        <p style="margin:5px 0 0 0; font-size: 11px; color:#555;">Dicetak pada: {{ date('d F Y H:i') }}</p>
     </div>
 
     <table>
@@ -34,13 +66,13 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($prestasis as $index => $item)
+            @foreach($prestasi as $index => $item)
             <tr>
                 <td class="text-center">{{ $index + 1 }}</td>
                 <td>{{ $item->siswa->nama }}</td>
                 <td class="text-center">{{ $item->siswa->kelas->nama_kelas ?? 'Alumni' }}</td>
                 <td>{{ $item->nama_lomba }}</td>
-                <td>{{ $item->kategori->nama_kategori }}</td>
+                <td>{{ $item->kategori->jenis_prestasi }} ({{ $item->kategori->nama_kategori }})</td>
                 <td>{{ $item->tingkat->nama_tingkat }}</td>
                 <td class="text-center">{{ $item->tanggal->format('d/m/Y') }}</td>
                 <td class="text-center">{{ ucfirst($item->status) }}</td>

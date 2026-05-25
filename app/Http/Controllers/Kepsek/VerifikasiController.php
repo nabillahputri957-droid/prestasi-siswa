@@ -14,8 +14,8 @@ class VerifikasiController extends Controller
 {
     public function index(Request $request)
     {
-        $kategoris = Kategori::all();
-        $tingkats = Tingkat::all();
+        $kategori = Kategori::all();
+        $tingkat = Tingkat::all();
         
         $currentTab = $request->get('status', 'pending');
         
@@ -35,9 +35,9 @@ class VerifikasiController extends Controller
                   });
         }
 
-        $prestasis = $query->latest()->paginate(10)->withQueryString();
+        $prestasi = $query->latest()->paginate(10)->withQueryString();
 
-        return view('kepsek.verifikasi.index', compact('prestasis', 'counts', 'currentTab', 'kategoris', 'tingkats'));
+        return view('kepsek.verifikasi.index', compact('prestasi', 'counts', 'currentTab', 'kategori', 'tingkat'));
     }
 
     public function show($id)

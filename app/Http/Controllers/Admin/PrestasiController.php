@@ -16,18 +16,18 @@ class PrestasiController extends Controller
 {
     public function index()
     {
-        $prestasis = Prestasi::with(['siswa', 'kategori', 'tingkat'])
+        $prestasi = Prestasi::with(['siswa', 'kategori', 'tingkat'])
             ->latest()
             ->paginate(10);
-        return view('admin.prestasi.index', compact('prestasis'));
+        return view('admin.prestasi.index', compact('prestasi'));
     }
 
     public function create()
     {
-        $siswas = Siswa::where('status', 'aktif')->orderBy('nama')->get();
-        $kategoris = Kategori::orderBy('nama_kategori')->get();
-        $tingkats = Tingkat::orderBy('nama_tingkat')->get();
-        return view('admin.prestasi.form', compact('siswas', 'kategoris', 'tingkats'));
+        $siswa = Siswa::where('status', 'aktif')->orderBy('nama')->get();
+        $kategori = Kategori::orderBy('nama_kategori')->get();
+        $tingkat = Tingkat::orderBy('nama_tingkat')->get();
+        return view('admin.prestasi.form', compact('siswa', 'kategori', 'tingkat'));
     }
 
     public function store(Request $request)
@@ -79,10 +79,10 @@ class PrestasiController extends Controller
     public function edit($id)
     {
         $prestasi = Prestasi::findOrFail($id);
-        $siswas = Siswa::where('status', 'aktif')->orderBy('nama')->get();
-        $kategoris = Kategori::orderBy('nama_kategori')->get();
-        $tingkats = Tingkat::orderBy('nama_tingkat')->get();
-        return view('admin.prestasi.form', compact('prestasi', 'siswas', 'kategoris', 'tingkats'));
+        $siswa = Siswa::where('status', 'aktif')->orderBy('nama')->get();
+        $kategori = Kategori::orderBy('nama_kategori')->get();
+        $tingkat = Tingkat::orderBy('nama_tingkat')->get();
+        return view('admin.prestasi.form', compact('prestasi', 'siswa', 'kategori', 'tingkat'));
     }
 
     public function update(Request $request, $id)

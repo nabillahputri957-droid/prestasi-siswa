@@ -15,7 +15,7 @@
                         <a href="{{ route('home') }}#timeline" class="px-4 py-3 rounded-xl text-sm font-semibold transition-all {{ !request('tahun_ajaran_id') ? 'bg-primary text-white shadow-md shadow-blue-500/20' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900' }}">
                             Semua Tahun
                         </a>
-                        @foreach($tahunAjarans as $ta)
+                        @foreach($tahunAjaran as $ta)
                             <a href="{{ route('home', ['tahun_ajaran_id' => $ta->id]) }}#timeline" class="px-4 py-3 rounded-xl text-sm font-semibold transition-all {{ request('tahun_ajaran_id') == $ta->id ? 'bg-primary text-white shadow-md shadow-blue-500/20' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900' }}">
                                 {{ $ta->tahun }}
                             </a>
@@ -29,7 +29,7 @@
                 <div class="absolute left-[39px] sm:left-[79px] top-4 bottom-4 w-0.5 bg-slate-200 z-0"></div>
 
                 <div class="space-y-8 relative z-10">
-                    @forelse($prestasis as $item)
+                    @forelse($prestasi as $item)
                     <div class="relative flex items-start group">
                         
                         <div class="flex flex-col items-center sm:items-end w-20 sm:w-24 flex-shrink-0 pt-5 pr-4 sm:pr-8 relative">
@@ -48,7 +48,7 @@
 
                                 <div>
                                     <div class="flex gap-2 mb-2">
-                                        <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">{{ $item->kategori->nama_kategori }}</span>
+                                        <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">{{ $item->kategori->jenis_prestasi }} ({{ $item->kategori->nama_kategori }})</span>
                                         <span class="text-[10px] font-bold text-yellow-700 bg-yellow-100 px-2 py-0.5 rounded-md">{{ $item->tingkat->nama_tingkat }}</span>
                                     </div>
                                     <h4 class="text-lg font-bold text-slate-900 mb-1 leading-tight group-hover:text-primary transition-colors">{{ $item->nama_lomba }}</h4>
@@ -71,8 +71,8 @@
                 </div>
 
                 <div class="mt-12 sm:pl-32 flex flex-col items-start gap-8">
-                    @if($prestasis->hasPages())
-                        <div class="w-full">{{ $prestasis->links() }}</div>
+                    @if($prestasi->hasPages())
+                        <div class="w-full">{{ $prestasi->links() }}</div>
                     @endif
                     
                     <a href="{{ route('public.prestasi.index') }}" class="inline-flex items-center justify-center gap-2 px-8 py-3 bg-slate-900 hover:bg-primary text-white font-bold rounded-xl transition-all shadow-md">

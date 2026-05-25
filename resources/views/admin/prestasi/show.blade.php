@@ -51,7 +51,7 @@
                 </div>
                 <div>
                     <p class="text-gray-400 mb-1">Kategori</p>
-                    <p class="font-semibold text-gray-800">{{ $prestasi->kategori->nama_kategori }}</p>
+                    <p class="font-semibold text-gray-800">{{ $prestasi->kategori->jenis_prestasi }} ({{ $prestasi->kategori->nama_kategori }})</p>
                 </div>
                 <div>
                     <p class="text-gray-400 mb-1">Tingkat Lomba</p>

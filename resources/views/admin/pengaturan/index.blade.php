@@ -70,6 +70,72 @@
                 </div>
             </div>
 
+            <!-- Card 3: Kop Laporan -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-50 bg-gray-50/50 flex items-center gap-2">
+                    <i class="fa-solid fa-file-contract text-primary"></i>
+                    <h3 class="font-semibold text-gray-800">Kop Surat (Laporan)</h3>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 gap-8">
+                        <!-- Form Inputs -->
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Baris 1 (Instansi Utama)</label>
+                                <input type="text" name="kop_baris_1" id="input_kop_baris_1" value="{{ old('kop_baris_1', $pengaturan->kop_baris_1) }}" class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Baris 2 (Dinas/Unit)</label>
+                                <input type="text" name="kop_baris_2" id="input_kop_baris_2" value="{{ old('kop_baris_2', $pengaturan->kop_baris_2) }}" class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Baris 3 (Nama Sekolah)</label>
+                                <input type="text" name="kop_baris_3" id="input_kop_baris_3" value="{{ old('kop_baris_3', $pengaturan->kop_baris_3) }}" class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Baris 4 (Alamat Kop)</label>
+                                <input type="text" name="kop_baris_4" id="input_kop_baris_4" value="{{ old('kop_baris_4', $pengaturan->kop_baris_4) }}" class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Baris 5 (Kontak/NPSN)</label>
+                                <input type="text" name="kop_baris_5" id="input_kop_baris_5" value="{{ old('kop_baris_5', $pengaturan->kop_baris_5) }}" class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Logo Kop Surat</label>
+                                <input type="file" name="logo_kop" id="input_logo_kop" accept="image/*" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-primary hover:file:bg-blue-100">
+                            </div>
+                        </div>
+
+                        <!-- Live Preview -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Live Preview (Kop Surat)</label>
+                            <div class="border border-gray-300 p-4 pb-8 rounded-lg bg-white relative overflow-hidden flex items-center justify-center min-h-[150px] shadow-sm">
+                                <div class="flex items-center w-full gap-4 relative z-10">
+                                    <!-- Logo Box -->
+                                    <div class="w-20 flex-shrink-0 flex items-center justify-center aspect-square">
+                                        <img id="preview_logo_kop" src="{{ $pengaturan->logo_kop ? asset('storage/pengaturan/' . $pengaturan->logo_kop) : '' }}" class="{{ $pengaturan->logo_kop ? '' : 'hidden' }} max-w-full max-h-full object-contain">
+                                        @if(!$pengaturan->logo_kop)
+                                            <div id="preview_logo_placeholder" class="w-full h-full border-2 border-dashed border-gray-300 flex items-center justify-center text-gray-400 text-xs">Logo</div>
+                                        @endif
+                                    </div>
+                                    <!-- Text Box -->
+                                    <div class="flex-grow flex flex-col items-center justify-center leading-snug">
+                                        <span id="preview_baris_1" class="text-[14px] text-gray-700 uppercase text-center">{{ $pengaturan->kop_baris_1 ?: 'PEMERINTAH KABUPATEN BATU BARA' }}</span>
+                                        <span id="preview_baris_2" class="text-[15px] font-semibold text-gray-800 uppercase text-center">{{ $pengaturan->kop_baris_2 ?: 'DINAS PENDIDIKAN' }}</span>
+                                        <span id="preview_baris_3" class="text-[18px] font-bold text-black uppercase text-center">{{ $pengaturan->kop_baris_3 ?: 'UPT. SD NEGERI 31 TANAH TINGGI' }}</span>
+                                        <span id="preview_baris_4" class="text-[11px] text-gray-600 text-center">{{ $pengaturan->kop_baris_4 ?: 'Jln Tanah Lapang Dusun VII Desa Tanah Tinggi Kecamatan Air Putih' }}</span>
+                                        <span id="preview_baris_5" class="text-[11px] text-gray-600 text-center">{{ $pengaturan->kop_baris_5 ?: 'NPSN 10204282 Kode Pos 21256' }}</span>
+                                    </div>
+                                </div>
+                                <!-- Double Line Bottom -->
+                                <div class="absolute bottom-3 left-4 right-4 border-b-[4px] border-black border-double"></div>
+                            </div>
+                            <p class="text-[10px] text-gray-400 mt-2 text-center">Tampilan kop surat ini akan digunakan pada file PDF laporan yang dicetak.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Kolom Kanan: Gambar & Logo -->
@@ -122,4 +188,39 @@
         </div>
     </div>
 </form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Live Preview Kop Surat Text
+        const inputs = ['kop_baris_1', 'kop_baris_2', 'kop_baris_3', 'kop_baris_4', 'kop_baris_5'];
+        inputs.forEach(id => {
+            const inputEl = document.getElementById('input_' + id);
+            const previewEl = document.getElementById('preview_' + id.replace('kop_', ''));
+            if (inputEl && previewEl) {
+                inputEl.addEventListener('input', function() {
+                    previewEl.innerText = this.value;
+                });
+            }
+        });
+
+        // Live Preview Logo
+        const logoInput = document.getElementById('input_logo_kop');
+        const logoPreview = document.getElementById('preview_logo_kop');
+        const logoPlaceholder = document.getElementById('preview_logo_placeholder');
+        
+        if (logoInput) {
+            logoInput.addEventListener('change', function(event) {
+                if (event.target.files && event.target.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        logoPreview.src = e.target.result;
+                        logoPreview.classList.remove('hidden');
+                        if (logoPlaceholder) logoPlaceholder.style.display = 'none';
+                    }
+                    reader.readAsDataURL(event.target.files[0]);
+                }
+            });
+        }
+    });
+</script>
 @endsection

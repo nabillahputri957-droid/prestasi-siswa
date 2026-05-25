@@ -18,18 +18,20 @@
             <thead>
                 <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
                     <th class="px-6 py-4 font-medium w-16">No</th>
-                    <th class="px-6 py-4 font-medium">Nama Kategori</th>
+                    <th class="px-6 py-4 font-medium">Jenis Prestasi</th>
+                    <th class="px-6 py-4 font-medium">Kategori</th>
                     <th class="px-6 py-4 font-medium text-center w-32">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 text-sm">
-                @forelse($kategoris as $index => $item)
+                @forelse($kategori as $index => $item)
                 <tr class="hover:bg-gray-50/50 transition-colors">
-                    <td class="px-6 py-4 text-gray-500">{{ $kategoris->firstItem() + $index }}</td>
-                    <td class="px-6 py-4 font-medium text-gray-800">{{ $item->nama_kategori }}</td>
+                    <td class="px-6 py-4 text-gray-500">{{ $kategori->firstItem() + $index }}</td>
+                    <td class="px-6 py-4 font-medium text-gray-800">{{ $item->jenis_prestasi }}</td>
+                    <td class="px-6 py-4 text-gray-600">{{ $item->nama_kategori }}</td>
                     <td class="px-6 py-4 text-center">
                         <div class="flex items-center justify-center gap-3">
-                            <button onclick="openEditModal({{ $item->id }}, '{{ $item->nama_kategori }}')" class="text-blue-500 hover:text-blue-700 transition-colors">
+                            <button onclick="openEditModal({{ $item->id }}, '{{ $item->nama_kategori }}', '{{ $item->jenis_prestasi }}')" class="text-blue-500 hover:text-blue-700 transition-colors">
                                 <i class="fa-regular fa-pen-to-square text-lg"></i>
                             </button>
                             <form action="{{ route('admin.kategori.destroy', $item->id) }}" method="POST" class="delete-form inline-block">
@@ -45,7 +47,7 @@
             </tbody>
         </table>
     </div>
-    <div class="p-5 border-t border-gray-50">{{ $kategoris->links() }}</div>
+    <div class="p-5 border-t border-gray-50">{{ $kategori->links() }}</div>
 </div>
 
 <div id="modal-tambah" class="fixed inset-0 z-50 hidden bg-gray-900/10 backdrop-blur-md flex items-center justify-center transition-opacity">
@@ -56,9 +58,17 @@
         </div>
         <form action="{{ route('admin.kategori.store') }}" method="POST">
             @csrf
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Prestasi</label>
+                <input type="text" name="jenis_prestasi" placeholder="Contoh: Karate, Futsal, Matematika" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
+            </div>
             <div class="mb-5">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Nama Kategori</label>
-                <input type="text" name="nama_kategori" placeholder="Contoh: Seni & Budaya" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                <select name="nama_kategori" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
+                    <option value="">-- Pilih Kategori --</option>
+                    <option value="Akademik">Akademik</option>
+                    <option value="Non-Akademik">Non-Akademik</option>
+                </select>
             </div>
             <div class="flex justify-end gap-3 mt-6">
                 <button type="button" onclick="closeModal('modal-tambah')" class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">Batal</button>
@@ -76,9 +86,16 @@
         </div>
         <form id="form-edit" method="POST">
             @csrf @method('PUT')
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Prestasi</label>
+                <input type="text" name="jenis_prestasi" id="edit-jenis" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
+            </div>
             <div class="mb-5">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Nama Kategori</label>
-                <input type="text" name="nama_kategori" id="edit-nama" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                <select name="nama_kategori" id="edit-nama" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
+                    <option value="Akademik">Akademik</option>
+                    <option value="Non-Akademik">Non-Akademik</option>
+                </select>
             </div>
             <div class="flex justify-end gap-3 mt-6">
                 <button type="button" onclick="closeModal('modal-edit')" class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">Batal</button>
@@ -103,9 +120,10 @@
         setTimeout(() => modal.classList.add('hidden'), 200);
     }
 
-    function openEditModal(id, nama) {
+    function openEditModal(id, nama, jenis) {
         document.getElementById('form-edit').action = `/admin/kategori/${id}`;
         document.getElementById('edit-nama').value = nama;
+        document.getElementById('edit-jenis').value = jenis;
         openModal('modal-edit');
     }
 

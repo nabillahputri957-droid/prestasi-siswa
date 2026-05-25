@@ -28,10 +28,11 @@ class PengaturanController extends Controller
             'nama_sekolah' => 'required|string|max:255',
             'email' => 'nullable|email',
             'logo' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            'logo_kop' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
             'hero_image' => 'nullable|image|mimes:png,jpg,jpeg|max:5120',
         ]);
 
-        $data = $request->except(['logo', 'hero_image', '_token', '_method']);
+        $data = $request->except(['logo', 'hero_image', 'logo_kop', '_token', '_method']);
 
         // Tentukan folder tujuan secara fisik di public/storage/pengaturan
         $destinationPath = public_path('storage/pengaturan');
@@ -47,6 +48,17 @@ class PengaturanController extends Controller
             $logoName = 'logo_' . time() . '.' . $request->logo->getClientOriginalExtension();
             $request->logo->move($destinationPath, $logoName);
             $data['logo'] = $logoName;
+        }
+
+        // Handle Upload Logo Kop
+        if ($request->hasFile('logo_kop')) {
+            if ($pengaturan->logo_kop && File::exists($destinationPath . '/' . $pengaturan->logo_kop)) {
+                File::delete($destinationPath . '/' . $pengaturan->logo_kop);
+            }
+            
+            $logoKopName = 'logo_kop_' . time() . '.' . $request->logo_kop->getClientOriginalExtension();
+            $request->logo_kop->move($destinationPath, $logoKopName);
+            $data['logo_kop'] = $logoKopName;
         }
 
         // Handle Upload Hero Image
