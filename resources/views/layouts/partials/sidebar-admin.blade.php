@@ -30,8 +30,7 @@
         </a>
 
         @php
-            // Cek apakah halaman saat ini ada di dalam grup Master
-            $isMasterActive = request()->routeIs('admin.siswa.*', 'admin.kelas.*', 'admin.tahun-ajaran.*', 'admin.kategori.*', 'admin.tingkat.*');
+            $isMasterActive = request()->routeIs('admin.siswa.*', 'admin.kelas.*', 'admin.tahun-ajaran.*');
         @endphp
         
         <div>
@@ -62,7 +61,24 @@
                   {{ request()->routeIs('admin.tahun-ajaran.*') ? 'bg-primary-light text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
                     <i class="fa-solid fa-calendar-alt w-5 text-center"></i> Tahun Ajaran
                 </a>
+            </div>
+        </div>
 
+        @php
+            $isPrestasiActive = request()->routeIs('admin.kategori.*', 'admin.tingkat.*');
+        @endphp
+        
+        <div class="mt-2 mb-2">
+            <button onclick="document.getElementById('dropdown-prestasi').classList.toggle('hidden'); document.getElementById('icon-prestasi').classList.toggle('rotate-90');"
+                    class="w-full flex justify-between items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ $isPrestasiActive ? 'text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-trophy w-5 text-center"></i> 
+                    <span>Modul Prestasi</span>
+                </div>
+                <i id="icon-prestasi" class="fa-solid fa-chevron-right text-[10px] transition-transform duration-200 {{ $isPrestasiActive ? 'rotate-90' : '' }}"></i>
+            </button>
+
+            <div id="dropdown-prestasi" class="mt-1 space-y-1 pl-4 {{ $isPrestasiActive ? '' : 'hidden' }}">
                 <a href="{{ route('admin.kategori.index') }}"
                     class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
                           {{ request()->routeIs('admin.kategori.*') ? 'bg-primary-light text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
@@ -77,48 +93,29 @@
             </div>
         </div>
 
+        <a href="{{ route('admin.prestasi.index') }}"
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
+          {{ request()->routeIs('admin.prestasi.*') ? 'bg-primary-light text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
+            <i class="fa-solid fa-medal w-5 text-center"></i> Data Prestasi
+        </a>
 
-        @php
-            $isPrestasiActive = request()->routeIs('admin.prestasi.*', 'admin.validasi.*', 'admin.laporan.*');
-        @endphp
-        
-        <div class="mt-2">
-            <button onclick="document.getElementById('dropdown-prestasi').classList.toggle('hidden'); document.getElementById('icon-prestasi').classList.toggle('rotate-90');"
-                    class="w-full flex justify-between items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ $isPrestasiActive ? 'text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-trophy w-5 text-center"></i> 
-                    <span>Modul Prestasi</span>
-                </div>
-                <i id="icon-prestasi" class="fa-solid fa-chevron-right text-[10px] transition-transform duration-200 {{ $isPrestasiActive ? 'rotate-90' : '' }}"></i>
-            </button>
-
-            <div id="dropdown-prestasi" class="mt-1 space-y-1 pl-4 {{ $isPrestasiActive ? '' : 'hidden' }}">
-                <a href="{{ route('admin.prestasi.index') }}"
-                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
-                  {{ request()->routeIs('admin.prestasi.*') ? 'bg-primary-light text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                    <i class="fa-solid fa-medal w-5 text-center"></i> Data Prestasi
-                </a>
-
-                <a href="{{ route('admin.validasi.index') }}"
-                    class="flex justify-between items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
-                  {{ request()->routeIs('admin.validasi.*') ? 'bg-primary-light text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-check-double w-5 text-center"></i> Status Validasi
-                    </div>
-                    @php $pendingMenuCount = \App\Models\Prestasi::where('status', 'pending')->count(); @endphp
-                    @if ($pendingMenuCount > 0)
-                        <span class="bg-orange-100 text-orange-600 py-0.5 px-2 rounded-full text-[10px] font-bold">{{ $pendingMenuCount }}</span>
-                    @endif
-                </a>
-                
-                <a href="{{ route('admin.laporan.index') }}"
-                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
-                  {{ request()->routeIs('admin.laporan.*') ? 'bg-primary-light text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                    <i class="fa-solid fa-file-export w-5 text-center"></i> Laporan & Export
-                </a>
+        <a href="{{ route('admin.validasi.index') }}"
+            class="flex justify-between items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
+          {{ request()->routeIs('admin.validasi.*') ? 'bg-primary-light text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-check-double w-5 text-center"></i> Status Validasi
             </div>
-        </div>
-
+            @php $pendingMenuCount = \App\Models\Prestasi::where('status', 'pending')->count(); @endphp
+            @if ($pendingMenuCount > 0)
+                <span class="bg-orange-100 text-orange-600 py-0.5 px-2 rounded-full text-[10px] font-bold">{{ $pendingMenuCount }}</span>
+            @endif
+        </a>
+        
+        <a href="{{ route('admin.laporan.index') }}"
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
+          {{ request()->routeIs('admin.laporan.*') ? 'bg-primary-light text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
+            <i class="fa-solid fa-file-export w-5 text-center"></i> Laporan & Export
+        </a>
 
         <div class="mt-2 pt-2 border-t border-gray-100">
             <a href="{{ route('admin.pengaturan.index') }}" 

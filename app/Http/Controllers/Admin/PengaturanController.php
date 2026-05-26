@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Pengaturan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File; // Gunakan File facade untuk menghapus gambar fisik
+use Illuminate\Support\Facades\File;
 
 class PengaturanController extends Controller
 {
@@ -34,17 +34,26 @@ class PengaturanController extends Controller
 
         $data = $request->except(['logo', 'hero_image', 'logo_kop', '_token', '_method']);
 
-        // Tentukan folder tujuan secara fisik di public/storage/pengaturan
-        $destinationPath = public_path('storage/pengaturan');
+        // LOGIKA DINAMIS UNTUK HOSTING / LOKAL
+        // Cek apakah folder public_html ada (berarti di server hosting)
+        if (File::exists(base_path('public_html'))) {
+            $destinationPath = base_path('public_html/storage/pengaturan');
+        } else {
+            // Jika tidak ada, gunakan public_path bawaan (untuk di lokal)
+            $destinationPath = public_path('storage/pengaturan');
+        }
+
+        // PASTIKAN FOLDER ADA, JIKA TIDAK MAKA BUAT OTOMATIS
+        if (!File::exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0755, true, true);
+        }
 
         // Handle Upload Logo
         if ($request->hasFile('logo')) {
-            // Hapus logo lama secara fisik jika ada
             if ($pengaturan->logo && File::exists($destinationPath . '/' . $pengaturan->logo)) {
                 File::delete($destinationPath . '/' . $pengaturan->logo);
             }
             
-            // Simpan logo baru langsung ke folder public
             $logoName = 'logo_' . time() . '.' . $request->logo->getClientOriginalExtension();
             $request->logo->move($destinationPath, $logoName);
             $data['logo'] = $logoName;
@@ -63,12 +72,10 @@ class PengaturanController extends Controller
 
         // Handle Upload Hero Image
         if ($request->hasFile('hero_image')) {
-            // Hapus hero image lama secara fisik jika ada
             if ($pengaturan->hero_image && File::exists($destinationPath . '/' . $pengaturan->hero_image)) {
                 File::delete($destinationPath . '/' . $pengaturan->hero_image);
             }
             
-            // Simpan hero image baru langsung ke folder public
             $heroName = 'hero_' . time() . '.' . $request->hero_image->getClientOriginalExtension();
             $request->hero_image->move($destinationPath, $heroName);
             $data['hero_image'] = $heroName;
