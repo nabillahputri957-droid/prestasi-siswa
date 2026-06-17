@@ -74,14 +74,20 @@
                 <h4 class="text-primary font-semibold mb-5 flex items-center gap-2">
                     <i class="fa-solid fa-user-graduate"></i> Informasi Siswa
                 </h4>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Cari NISN Siswa</label>
+                    <div class="relative">
+                        <input type="text" id="search_nisn" placeholder="Ketik NISN..." value="{{ isset($prestasi) ? $prestasi->siswa->nisn : '' }}" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none text-sm">
+                        <div id="search-loading" class="absolute right-3 top-1/2 -translate-y-1/2 hidden">
+                            <i class="fa-solid fa-spinner fa-spin text-primary"></i>
+                        </div>
+                    </div>
+                    <p id="nisn-error" class="text-xs text-red-500 mt-1 hidden">Siswa tidak ditemukan!</p>
+                </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Nama Siswa</label>
-                    <select name="siswa_id" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none text-sm">
-                        <option value="">Pilih siswa</option>
-                        @foreach($siswa as $siswa)
-                            <option value="{{ $siswa->id }}" {{ old('siswa_id', $prestasi->siswa_id ?? '') == $siswa->id ? 'selected' : '' }}>{{ $siswa->nama }} ({{ $siswa->nisn }})</option>
-                        @endforeach
-                    </select>
+                    <input type="text" id="display_nama" readonly value="{{ isset($prestasi) ? $prestasi->siswa->nama : '' }}" class="w-full px-4 py-2.5 bg-gray-100 border border-gray-200 rounded-lg text-sm text-gray-500 cursor-not-allowed">
+                    <input type="hidden" name="siswa_id" id="siswa_id" value="{{ isset($prestasi) ? $prestasi->siswa_id : '' }}" required>
                 </div>
             </div>
 
@@ -130,6 +136,51 @@
         document.getElementById('file-name').innerText = fileName ? 'File terpilih: ' + fileName : '';
     }
     
+    // Auto-fill Siswa based on NISN
+    const searchNisn = document.getElementById('search_nisn');
+    const displayNama = document.getElementById('display_nama');
+    const siswaId = document.getElementById('siswa_id');
+    const loading = document.getElementById('search-loading');
+    const errorMsg = document.getElementById('nisn-error');
+
+    let timeout = null;
+    searchNisn.addEventListener('input', function() {
+        clearTimeout(timeout);
+        const nisn = this.value.trim();
+        
+        if (nisn.length < 3) {
+            displayNama.value = '';
+            siswaId.value = '';
+            errorMsg.classList.add('hidden');
+            return;
+        }
+
+        loading.classList.remove('hidden');
+        errorMsg.classList.add('hidden');
+
+        timeout = setTimeout(() => {
+            fetch(`/admin/siswa/search?nisn=${nisn}`)
+                .then(res => res.json())
+                .then(data => {
+                    loading.classList.add('hidden');
+                    if (data.success) {
+                        displayNama.value = data.data.nama;
+                        siswaId.value = data.data.id;
+                        errorMsg.classList.add('hidden');
+                    } else {
+                        displayNama.value = '';
+                        siswaId.value = '';
+                        errorMsg.classList.remove('hidden');
+                    }
+                })
+                .catch(() => {
+                    loading.classList.add('hidden');
+                    errorMsg.classList.remove('hidden');
+                    errorMsg.innerText = 'Terjadi kesalahan jaringan!';
+                });
+        }, 500); // 500ms debounce
+    });
+
     // Error Handling SweetAlert
     @if($errors->any())
         Swal.fire({ icon: 'error', title: 'Periksa kembali inputan Anda', text: '{{ $errors->first() }}', confirmButtonColor: '#3b82f6' });
