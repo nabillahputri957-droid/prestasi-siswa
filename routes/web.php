@@ -39,6 +39,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Area Admin
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/siswa/search', [SiswaController::class, 'searchByNisn'])->name('siswa.search');
     Route::resource('siswa', SiswaController::class);
     Route::post('tahun-ajaran/{id}/set-aktif', [TahunAjaranController::class, 'setAktif'])->name('tahun-ajaran.set-aktif');
     Route::resource('tahun-ajaran', TahunAjaranController::class);

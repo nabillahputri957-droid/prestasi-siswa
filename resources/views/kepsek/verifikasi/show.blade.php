@@ -23,7 +23,10 @@
                 <div><p class="text-gray-400 mb-1">Kategori</p><p class="font-bold text-gray-800">{{ $prestasi->kategori->jenis_prestasi }} ({{ $prestasi->kategori->nama_kategori }})</p></div>
                 <div><p class="text-gray-400 mb-1">Tingkat</p><p class="font-bold text-gray-800">{{ $prestasi->tingkat->nama_tingkat }}</p></div>
             </div>
-            <div><p class="text-gray-400 mb-1">Tanggal</p><p class="font-bold text-gray-800">{{ $prestasi->tanggal->format('d F Y') }}</p></div>
+            <div class="grid grid-cols-2 gap-4">
+                <div><p class="text-gray-400 mb-1">Juara</p><p class="font-bold text-blue-600">{{ $prestasi->juara }}</p></div>
+                <div><p class="text-gray-400 mb-1">Tanggal</p><p class="font-bold text-gray-800">{{ $prestasi->tanggal->format('d F Y') }}</p></div>
+            </div>
             <div><p class="text-gray-400 mb-1">Deskripsi</p><p class="text-gray-600 leading-relaxed">{{ $prestasi->deskripsi }}</p></div>
             <hr class="border-gray-50">
             <div><p class="text-gray-400 mb-1">Diajukan Oleh</p><p class="font-bold text-gray-800">{{ $prestasi->creator->nama }}</p></div>

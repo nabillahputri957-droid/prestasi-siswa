@@ -59,9 +59,10 @@
                 <th width="15%">Nama Siswa</th>
                 <th width="10%">Kelas</th>
                 <th width="20%">Nama Lomba</th>
+                <th width="10%">Juara</th>
                 <th width="12%">Kategori</th>
                 <th width="12%">Tingkat</th>
-                <th width="10%">Tanggal</th>
+                <th width="8%">Tanggal</th>
                 <th width="10%">Status</th>
             </tr>
         </thead>
@@ -72,7 +73,8 @@
                 <td>{{ $item->siswa->nama }}</td>
                 <td class="text-center">{{ $item->siswa->kelas->nama_kelas ?? 'Alumni' }}</td>
                 <td>{{ $item->nama_lomba }}</td>
-                <td>{{ $item->kategori->jenis_prestasi }} ({{ $item->kategori->nama_kategori }})</td>
+                <td class="text-center">{{ $item->juara }}</td>
+                <td>{{ $item->kategori->jenis_prestasi }}<br>({{ $item->kategori->nama_kategori }})</td>
                 <td>{{ $item->tingkat->nama_tingkat }}</td>
                 <td class="text-center">{{ $item->tanggal->format('d/m/Y') }}</td>
                 <td class="text-center">{{ ucfirst($item->status) }}</td>

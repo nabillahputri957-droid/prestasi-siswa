@@ -43,6 +43,12 @@
                     </select>
                 </div>
                 <div class="flex-1">
+                    <select name="juara" class="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-xl focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm font-medium text-slate-600">
+                        <option value="">Semua Juara</option>
+                        @foreach($juaraOptions as $opt) <option value="{{ $opt }}" {{ request('juara') == $opt ? 'selected' : '' }}>{{ $opt }}</option> @endforeach
+                    </select>
+                </div>
+                <div class="flex-1">
                     <select name="tahun_ajaran_id" class="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-xl focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm font-medium text-slate-600">
                         <option value="">Semua Tahun</option>
                         @foreach($tahunAjaran as $ta) <option value="{{ $ta->id }}" {{ request('tahun_ajaran_id') == $ta->id ? 'selected' : '' }}>{{ $ta->tahun }}</option> @endforeach
@@ -76,6 +82,7 @@
 
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex gap-2 mb-3 flex-wrap">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-100 px-2.5 py-1 rounded-md">{{ $item->juara }}</span>
                         <span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-blue-50 px-2.5 py-1 rounded-md">{{ $item->kategori->jenis_prestasi }} ({{ $item->kategori->nama_kategori }})</span>
                         <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md">{{ $item->tingkat->nama_tingkat }}</span>
                     </div>

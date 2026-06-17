@@ -30,6 +30,7 @@
                     <td class="px-6 py-4 text-gray-500">{{ $prestasi->firstItem() + $index }}</td>
                     <td class="px-6 py-4">
                         <p class="font-medium text-gray-800">{{ $item->nama_lomba }}</p>
+                        <p class="text-xs text-blue-600 font-semibold mb-1">{{ $item->juara }}</p>
                         @if($item->unggulan) <span class="text-[10px] bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full font-bold"><i class="fa-solid fa-star text-yellow-500 mr-1"></i>Unggulan</span> @endif
                     </td>
                     <td class="px-6 py-4 text-gray-600">{{ $item->siswa->nama }}</td>

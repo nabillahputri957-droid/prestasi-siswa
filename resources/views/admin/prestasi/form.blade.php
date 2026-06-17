@@ -16,9 +16,23 @@
             </h4>
 
             <div class="space-y-5">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lomba</label>
-                    <input type="text" name="nama_lomba" value="{{ old('nama_lomba', $prestasi->nama_lomba ?? '') }}" placeholder="Masukkan nama lomba" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
+                <div class="grid grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lomba</label>
+                        <input type="text" name="nama_lomba" value="{{ old('nama_lomba', $prestasi->nama_lomba ?? '') }}" placeholder="Masukkan nama lomba" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Juara Ke-</label>
+                        <select name="juara" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none text-sm">
+                            <option value="">Pilih Juara</option>
+                            @php
+                                $options = ['Juara 1', 'Juara 2', 'Juara 3', 'Harapan 1', 'Harapan 2', 'Harapan 3', 'Peserta/Finalis', 'Lainnya'];
+                            @endphp
+                            @foreach($options as $opt)
+                                <option value="{{ $opt }}" {{ old('juara', $prestasi->juara ?? '') == $opt ? 'selected' : '' }}>{{ $opt }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-5">

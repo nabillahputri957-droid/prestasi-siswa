@@ -29,7 +29,6 @@
                     <th class="px-6 py-4 font-medium">Nama Siswa</th>
                     <th class="px-6 py-4 font-medium text-center">Kelas</th>
                     <th class="px-6 py-4 font-medium">Tahun Ajaran</th>
-                    <th class="px-6 py-4 font-medium text-center">Status</th>
                     <th class="px-6 py-4 font-medium text-center">Aksi</th>
                 </tr>
             </thead>
@@ -45,13 +44,6 @@
                         </span>
                     </td>
                     <td class="px-6 py-4 text-gray-600">{{ $item->tahunAjaran->tahun ?? '-' }}</td>
-                    <td class="px-6 py-4 text-center">
-                        @if($item->status == 'aktif')
-                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Aktif</span>
-                        @else
-                            <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Alumni</span>
-                        @endif
-                    </td>
                     <td class="px-6 py-4 text-center">
                         <div class="flex items-center justify-center gap-3">
                             <button onclick="openEditSiswaModal({{ json_encode($item) }})" class="text-blue-500 hover:text-blue-700 transition-colors">
@@ -94,12 +86,8 @@
                     <input type="text" name="nisn" id="input-nisn" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
                 </div>
 
-                <div class="md:col-span-1">
-                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Status Siswa</label>
-                    <select name="status" id="input-status" onchange="toggleKelasField()" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
-                        <option value="aktif">Aktif</option>
-                        <option value="alumni">Alumni</option>
-                    </select>
+                <div class="md:col-span-1" style="display:none;">
+                    <input type="hidden" name="status" value="aktif">
                 </div>
 
                 <div class="md:col-span-2">
@@ -141,19 +129,6 @@
     const content = document.getElementById('modal-siswa-content');
     const form = document.getElementById('form-siswa');
     const containerKelas = document.getElementById('container-kelas');
-    const inputStatus = document.getElementById('input-status');
-
-    // Fungsi Logika "Kelas Nutup" jika Alumni
-    function toggleKelasField() {
-        if (inputStatus.value === 'alumni') {
-            containerKelas.classList.add('hidden');
-            document.getElementById('input-kelas').value = ""; // Reset value
-            document.getElementById('input-kelas').removeAttribute('required');
-        } else {
-            containerKelas.classList.remove('hidden');
-            document.getElementById('input-kelas').setAttribute('required', 'required');
-        }
-    }
 
     function openSiswaModal(type) {
         modal.classList.remove('hidden');
@@ -164,9 +139,35 @@
             form.action = "{{ route('admin.siswa.store') }}";
             document.getElementById('method-field').innerHTML = "";
             form.reset();
-            toggleKelasField();
         }
     }
+
+    // Auto-Fill via NISN (AJAX)
+    document.getElementById('input-nisn').addEventListener('input', function() {
+        const nisn = this.value;
+        if (nisn.length >= 5) {
+            fetch(`/admin/siswa/search?nisn=${nisn}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const siswa = data.data;
+                        document.getElementById('input-nama').value = siswa.nama;
+                        
+                        // Change form to edit mode dynamically
+                        document.getElementById('modal-title').innerText = "Update Data Siswa (Ditemukan)";
+                        form.action = `/admin/siswa/${siswa.id}`;
+                        document.getElementById('method-field').innerHTML = '@method("PUT")';
+                    } else {
+                        // Reset if not found but was previously found
+                        if (form.action.includes('/admin/siswa/')) {
+                            document.getElementById('modal-title').innerText = "Tambah Siswa Baru";
+                            form.action = "{{ route('admin.siswa.store') }}";
+                            document.getElementById('method-field').innerHTML = "";
+                        }
+                    }
+                });
+        }
+    });
 
     function openEditSiswaModal(siswa) {
         openSiswaModal('edit');
@@ -177,11 +178,8 @@
         // Fill values
         document.getElementById('input-nisn').value = siswa.nisn;
         document.getElementById('input-nama').value = siswa.nama;
-        document.getElementById('input-status').value = siswa.status;
         document.getElementById('input-kelas').value = siswa.kelas_id ?? "";
         document.getElementById('input-ta').value = siswa.tahun_ajaran_id;
-        
-        toggleKelasField();
     }
 
     function closeSiswaModal() {

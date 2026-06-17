@@ -57,6 +57,10 @@
                     <p class="text-gray-400 mb-1">Tingkat Lomba</p>
                     <p class="font-semibold text-gray-800">{{ $prestasi->tingkat->nama_tingkat }}</p>
                 </div>
+                <div>
+                    <p class="text-gray-400 mb-1">Juara</p>
+                    <p class="font-semibold text-gray-800">{{ $prestasi->juara }}</p>
+                </div>
             </div>
 
             <div>

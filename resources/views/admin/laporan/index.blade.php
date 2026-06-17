@@ -95,6 +95,7 @@
                 <thead>
                     <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
                         <th class="px-6 py-3 font-medium">Nama Lomba</th>
+                        <th class="px-6 py-3 font-medium">Juara</th>
                         <th class="px-6 py-3 font-medium">Siswa</th>
                         <th class="px-6 py-3 font-medium">Kategori</th>
                         <th class="px-6 py-3 font-medium">Tingkat</th>
@@ -106,6 +107,7 @@
                     @forelse($prestasi as $item)
                     <tr>
                         <td class="px-6 py-3 text-gray-800 font-medium">{{ $item->nama_lomba }}</td>
+                        <td class="px-6 py-3 text-blue-600 font-semibold">{{ $item->juara }}</td>
                         <td class="px-6 py-3 text-gray-600">{{ $item->siswa->nama }}</td>
                         <td class="px-6 py-3 text-gray-600">{{ $item->kategori->jenis_prestasi }} ({{ $item->kategori->nama_kategori }})</td>
                         <td class="px-6 py-3 text-gray-600">{{ $item->tingkat->nama_tingkat }}</td>

@@ -53,9 +53,14 @@ class PrestasiController extends Controller
         if ($request->filled('tahun_ajaran_id')) {
             $query->where('tahun_ajaran_id', $request->tahun_ajaran_id);
         }
+        if ($request->filled('juara')) {
+            $query->where('juara', $request->juara);
+        }
 
         $prestasi = $query->latest('tanggal')->paginate(12)->withQueryString();
 
-        return view('pengunjung.prestasi.index', compact('prestasi', 'kategori', 'tingkat', 'tahunAjaran', 'title', 'isUnggulan'));
+        $juaraOptions = ['Juara 1', 'Juara 2', 'Juara 3', 'Harapan 1', 'Harapan 2', 'Harapan 3', 'Peserta/Finalis', 'Lainnya'];
+
+        return view('pengunjung.prestasi.index', compact('prestasi', 'kategori', 'tingkat', 'tahunAjaran', 'title', 'isUnggulan', 'juaraOptions'));
     }
 }

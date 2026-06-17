@@ -33,12 +33,8 @@ class SiswaController extends Controller
             'nisn' => 'required|unique:siswa,nisn',
             'nama' => 'required|string|max:255',
             'tahun_ajaran_id' => 'required|exists:tahun_ajaran,id',
-            'status' => 'required|in:aktif,alumni',
+            'kelas_id' => 'required|exists:kelas,id',
         ];
-
-        if ($request->status == 'aktif') {
-            $rules['kelas_id'] = 'required|exists:kelas,id';
-        }
 
         $request->validate($rules);
 
@@ -53,18 +49,11 @@ class SiswaController extends Controller
             'nisn' => 'required|unique:siswa,nisn,' . $id,
             'nama' => 'required|string|max:255',
             'tahun_ajaran_id' => 'required|exists:tahun_ajaran,id',
-            'status' => 'required|in:aktif,alumni',
+            'kelas_id' => 'required|exists:kelas,id',
         ];
-
-        if ($request->status == 'aktif') {
-            $rules['kelas_id'] = 'required|exists:kelas,id';
-        }
 
         $request->validate($rules);
         $data = $request->all();
-        if ($request->status == 'alumni') {
-            $data['kelas_id'] = null;
-        }
 
         $siswa->update($data);
         return redirect()->back()->with('success', 'Data siswa berhasil diperbarui!');
@@ -74,5 +63,23 @@ class SiswaController extends Controller
     {
         Siswa::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Data siswa berhasil dihapus!');
+    }
+
+    public function searchByNisn(Request $request)
+    {
+        $nisn = $request->query('nisn');
+        $siswa = Siswa::where('nisn', $nisn)->first();
+
+        if ($siswa) {
+            return response()->json([
+                'success' => true,
+                'data' => $siswa
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Siswa tidak ditemukan'
+        ]);
     }
 }
