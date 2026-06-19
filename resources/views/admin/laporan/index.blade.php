@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="flex gap-2">
-                    <button type="submit" class="px-5 py-2 bg-primary hover:bg-blue-600 text-white rounded-lg text-sm font-medium transition-colors shadow-sm">
+                    <button type="submit" class="px-5 py-2 bg-primary hover:bg-blue-200 text-white rounded-lg text-sm font-medium transition-colors shadow-sm">
                         Tampilkan Data
                     </button>
                     @if(request()->anyFilled(['tahun_ajaran_id', 'kategori_id', 'siswa_id']))

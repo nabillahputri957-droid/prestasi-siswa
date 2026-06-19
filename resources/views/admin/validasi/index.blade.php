@@ -9,7 +9,7 @@
     
     <div class="border-b border-gray-100 flex overflow-x-auto hide-scrollbar">
         <a href="{{ route('admin.validasi.index', array_merge(request()->query(), ['status' => 'semua'])) }}" 
-           class="px-6 py-4 text-sm font-semibold whitespace-nowrap transition-colors flex items-center gap-2 border-b-2 {{ $currentStatus == 'semua' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-blue-500' }}">
+           class="px-6 py-4 text-sm font-semibold whitespace-nowrap transition-colors flex items-center gap-2 border-b-2 {{ $currentStatus == 'semua' ? 'border-blue-400 text-blue-400' : 'border-transparent text-gray-500 hover:text-blue-500' }}">
            Semua <span class="bg-blue-50 text-blue-600 py-0.5 px-2 rounded-full text-xs">{{ $counts['semua'] }}</span>
         </a>
         

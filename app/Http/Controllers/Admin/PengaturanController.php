@@ -13,7 +13,7 @@ class PengaturanController extends Controller
     {
         $pengaturan = Pengaturan::firstOrCreate(
             ['id' => 1],
-            ['nama_sekolah' => 'SMP Negeri 1 Example']
+            ['nama_sekolah' => 'SEKOLAH DASAR NEGERI 31']
         );
 
         return view('admin.pengaturan.index', compact('pengaturan'));

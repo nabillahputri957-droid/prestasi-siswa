@@ -1,4 +1,4 @@
-<header class="bg-white h-16 border-b border-gray-100 flex items-center justify-between px-4 sm:px-6 shadow-sm z-10 shrink-0">
+<header class="bg-blue-200 h-16 border-b border-gray-100 flex items-center justify-between px-4 sm:px-6 shadow-sm z-10 shrink-0">
     
     <!-- Bagian Kiri: Tombol Menu Mobile & Judul -->
     <div class="flex items-center gap-3 sm:gap-4">

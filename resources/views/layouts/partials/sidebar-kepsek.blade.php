@@ -1,5 +1,5 @@
 <!-- Sidebar Kepala Sekolah -->
-<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-sm flex flex-col h-full border-r border-gray-100 transform -translate-x-full lg:relative lg:translate-x-0 transition-transform duration-300 ease-in-out">
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-blue-200 shadow-sm flex flex-col h-full border-r border-gray-100 transform -translate-x-full lg:relative lg:translate-x-0 transition-transform duration-300 ease-in-out">
     
     <div class="h-16 flex items-center justify-between px-6 border-b border-gray-50">
         <div class="flex items-center gap-3 text-primary">

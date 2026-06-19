@@ -15,7 +15,7 @@
             </div>
         </form>
         
-        <button onclick="openSiswaModal('tambah')" class="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-sm">
+        <button onclick="openSiswaModal('tambah')" class="bg-primary hover:bg-blue-200 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-sm">
             <i class="fa-solid fa-plus"></i> Tambah Siswa
         </button>
     </div>
@@ -130,7 +130,7 @@
 
             <div class="flex justify-end gap-3 mt-10">
                 <button type="button" onclick="closeSiswaModal()" class="px-6 py-2.5 bg-white border border-gray-200 text-gray-600 rounded-xl text-sm font-semibold hover:bg-gray-50 transition-colors">Batal</button>
-                <button type="submit" class="px-8 py-2.5 bg-primary hover:bg-blue-600 text-white rounded-xl text-sm font-semibold transition-colors shadow-lg shadow-blue-100">Simpan Data</button>
+                <button type="submit" class="px-8 py-2.5 bg-primary hover:bg-blue-200 text-white rounded-xl text-sm font-semibold transition-colors shadow-lg shadow-blue-100">Simpan Data</button>
             </div>
         </form>
     </div>

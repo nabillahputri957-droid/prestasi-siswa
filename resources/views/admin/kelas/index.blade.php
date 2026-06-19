@@ -8,7 +8,7 @@
 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
     <div class="p-5 border-b border-gray-50 flex justify-between items-center">
         <h3 class="text-gray-800 font-medium">Daftar Kelas</h3>
-        <button onclick="openModal('modal-tambah')" class="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-sm">
+        <button onclick="openModal('modal-tambah')" class="bg-primary hover:bg-blue-200 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-sm">
             <i class="fa-solid fa-plus"></i> Tambah Kelas
         </button>
     </div>
@@ -71,7 +71,7 @@
             </div>
             <div class="flex justify-end gap-3 mt-6">
                 <button type="button" onclick="closeModal('modal-tambah')" class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">Batal</button>
-                <button type="submit" class="px-6 py-2 bg-primary hover:bg-blue-600 text-white rounded-lg text-sm font-medium transition-colors shadow-sm focus:ring-4 focus:ring-blue-100">Simpan Data</button>
+                <button type="submit" class="px-6 py-2 bg-primary hover:bg-blue-200 text-white rounded-lg text-sm font-medium transition-colors shadow-sm focus:ring-4 focus:ring-blue-100">Simpan Data</button>
             </div>
         </form>
     </div>
@@ -92,7 +92,7 @@
             </div>
             <div class="flex justify-end gap-3 mt-6">
                 <button type="button" onclick="closeModal('modal-edit')" class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">Batal</button>
-                <button type="submit" class="px-6 py-2 bg-primary hover:bg-blue-600 text-white rounded-lg text-sm font-medium transition-colors shadow-sm focus:ring-4 focus:ring-blue-100">Simpan Perubahan</button>
+                <button type="submit" class="px-6 py-2 bg-primary hover:bg-blue-200 text-white rounded-lg text-sm font-medium transition-colors shadow-sm focus:ring-4 focus:ring-blue-100">Simpan Perubahan</button>
             </div>
         </form>
     </div>

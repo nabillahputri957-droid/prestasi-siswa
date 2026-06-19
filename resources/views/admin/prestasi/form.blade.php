@@ -103,7 +103,7 @@
 
             <div class="flex justify-end gap-3 mt-6">
                 <a href="{{ route('admin.prestasi.index') }}" class="px-6 py-2.5 bg-white border border-gray-200 text-gray-600 rounded-lg text-sm font-semibold hover:bg-gray-50 transition-colors">Batal</a>
-                <button type="submit" class="px-8 py-2.5 bg-primary hover:bg-blue-600 text-white rounded-lg text-sm font-semibold shadow-md shadow-blue-200 transition-all">Simpan</button>
+                <button type="submit" class="px-8 py-2.5 bg-primary hover:bg-blue-200 text-white rounded-lg text-sm font-semibold shadow-md shadow-blue-200 transition-all">Simpan</button>
             </div>
 
         </div>

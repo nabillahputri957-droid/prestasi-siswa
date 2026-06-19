@@ -7,7 +7,7 @@
 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
     <div class="p-5 border-b border-gray-50 flex justify-between items-center">
         <h3 class="text-gray-800 font-medium">Daftar Prestasi</h3>
-        <a href="{{ route('admin.prestasi.create') }}" class="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm">
+        <a href="{{ route('admin.prestasi.create') }}" class="bg-primary hover:bg-blue-200 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm">
             <i class="fa-solid fa-plus mr-2"></i>Tambah Prestasi
         </a>
     </div>

@@ -8,7 +8,7 @@
 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
     <div class="p-5 border-b border-gray-50 flex justify-between items-center">
         <h3 class="text-gray-800 font-medium">Daftar Tahun Ajaran</h3>
-        <a href="{{ route('admin.tahun-ajaran.create') }}" class="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2">
+        <a href="{{ route('admin.tahun-ajaran.create') }}" class="bg-primary hover:bg-blue-200 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2">
             <i class="fa-solid fa-plus"></i> Tambah Tahun Ajaran
         </a>
     </div>

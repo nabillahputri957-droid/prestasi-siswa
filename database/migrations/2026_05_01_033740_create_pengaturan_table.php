@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('pengaturan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_sekolah')->default('SMP Negeri 1 Example');
+            $table->string('nama_sekolah')->default('SEKOLAH DASAR NEGERI 31');
             $table->text('alamat')->nullable();
             $table->string('telepon')->nullable();
             $table->string('email')->nullable();
