@@ -38,7 +38,7 @@ class PrestasiExport implements FromCollection, WithHeadings, WithMapping
     {
         return [
             'No', 'NISN', 'Nama Siswa', 'Kelas', 'Tahun Ajaran', 
-            'Nama Lomba', 'Kategori', 'Tingkat', 'Tanggal', 'Status', 'Unggulan'
+            'Nama Lomba', 'Juara', 'Kategori', 'Tingkat', 'Tanggal', 'Status', 'Unggulan'
         ];
     }
 
@@ -52,6 +52,7 @@ class PrestasiExport implements FromCollection, WithHeadings, WithMapping
             $prestasi->siswa->kelas->nama_kelas ?? 'Alumni',
             $prestasi->tahunAjaran->tahun,
             $prestasi->nama_lomba,
+            $prestasi->juara,
             $prestasi->kategori->nama_kategori,
             $prestasi->tingkat->nama_tingkat,
             $prestasi->tanggal->format('d/m/Y'),

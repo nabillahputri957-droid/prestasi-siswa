@@ -65,33 +65,14 @@
         </div>
 
         @php
-            $isPrestasiActive = request()->routeIs('admin.kategori.*', 'admin.tingkat.*');
+            $isModulPrestasiActive = request()->routeIs('admin.modul-prestasi.*', 'admin.kategori.*', 'admin.tingkat.*');
         @endphp
         
-        <div class="mt-2 mb-2">
-            <button onclick="document.getElementById('dropdown-prestasi').classList.toggle('hidden'); document.getElementById('icon-prestasi').classList.toggle('rotate-90');"
-                    class="w-full flex justify-between items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ $isPrestasiActive ? 'text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-trophy w-5 text-center"></i> 
-                    <span>Modul Prestasi</span>
-                </div>
-                <i id="icon-prestasi" class="fa-solid fa-chevron-right text-[10px] transition-transform duration-200 {{ $isPrestasiActive ? 'rotate-90' : '' }}"></i>
-            </button>
-
-            <div id="dropdown-prestasi" class="mt-1 space-y-1 pl-4 {{ $isPrestasiActive ? '' : 'hidden' }}">
-                <a href="{{ route('admin.kategori.index') }}"
-                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
-                          {{ request()->routeIs('admin.kategori.*') ? 'bg-primary-light text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                    <i class="fa-solid fa-tags w-5 text-center"></i> Kategori Prestasi
-                </a>
-                
-                <a href="{{ route('admin.tingkat.index') }}"
-                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
-                          {{ request()->routeIs('admin.tingkat.*') ? 'bg-primary-light text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                    <i class="fa-solid fa-layer-group w-5 text-center"></i> Tingkat Lomba
-                </a>
-            </div>
-        </div>
+        <a href="{{ route('admin.modul-prestasi.index') }}"
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors mt-2 mb-2
+                  {{ $isModulPrestasiActive ? 'bg-primary-light text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
+            <i class="fa-solid fa-trophy w-5 text-center"></i> Modul Prestasi
+        </a>
 
         <a href="{{ route('admin.prestasi.index') }}"
             class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors

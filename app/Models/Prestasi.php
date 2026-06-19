@@ -11,7 +11,7 @@ class Prestasi extends Model
     protected $fillable = [
         'siswa_id', 'tahun_ajaran_id', 'kategori_id', 'tingkat_id',
         'nama_lomba', 'tanggal', 'deskripsi', 'file_bukti',
-        'status', 'catatan', 'unggulan', 'created_by'
+        'juara', 'status', 'catatan', 'unggulan', 'created_by'
     ];
 
     protected $casts = [

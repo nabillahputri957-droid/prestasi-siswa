@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\TahunAjaranController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\TingkatController;
+use App\Http\Controllers\Admin\ModulPrestasiController;
 use App\Http\Controllers\Admin\ValidasiController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\NotifikasiController;
@@ -38,12 +39,16 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Area Admin
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/siswa/search', [SiswaController::class, 'searchByNisn'])->name('siswa.search');
     Route::resource('siswa', SiswaController::class);
     Route::post('tahun-ajaran/{id}/set-aktif', [TahunAjaranController::class, 'setAktif'])->name('tahun-ajaran.set-aktif');
     Route::resource('tahun-ajaran', TahunAjaranController::class);
     Route::resource('kelas', KelasController::class)->except(['create', 'edit', 'show']);
-    Route::resource('kategori', KategoriController::class)->except(['create', 'edit', 'show']);
-    Route::resource('tingkat', TingkatController::class)->except(['create', 'edit', 'show']);
+    Route::get('/modul-prestasi', [ModulPrestasiController::class, 'index'])->name('modul-prestasi.index');
+    Route::resource('kategori', KategoriController::class)->except(['create', 'edit', 'show', 'index']);
+    Route::resource('tingkat', TingkatController::class)->except(['create', 'edit', 'show', 'index']);
+    Route::get('/kategori', function () { return redirect()->route('admin.modul-prestasi.index'); });
+    Route::get('/tingkat', function () { return redirect()->route('admin.modul-prestasi.index'); });
     Route::resource('prestasi', App\Http\Controllers\Admin\PrestasiController::class);
     Route::get('/validasi-status', [ValidasiController::class, 'index'])->name('validasi.index');
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');

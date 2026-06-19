@@ -24,9 +24,18 @@
         <div class="flex flex-col items-end">
             <!-- Label disembunyikan di HP -->
             <span class="hidden sm:block text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Tahun Ajaran Aktif</span>
-            <select class="text-xs sm:text-sm font-medium text-gray-800 bg-transparent border-none focus:ring-0 cursor-pointer outline-none pr-6 sm:pr-8 py-1">
-                <option value="2024/2025">2024/2025</option>
-                <option value="2023/2024">2023/2024</option>
+            @php
+                $semuaTa = \App\Models\TahunAjaran::orderBy('tahun', 'desc')->get();
+                $taAktif = $semuaTa->firstWhere('status', 'aktif');
+            @endphp
+            <select class="text-xs sm:text-sm font-medium text-gray-800 bg-transparent border-none focus:ring-0 cursor-pointer outline-none pr-6 sm:pr-8 py-1" disabled title="Tahun Ajaran Aktif (hanya baca)">
+                @if($semuaTa->isEmpty())
+                    <option value="">Belum Ada Data</option>
+                @else
+                    @foreach($semuaTa as $ta)
+                        <option value="{{ $ta->id }}" {{ $ta->status == 'aktif' ? 'selected' : '' }}>{{ $ta->tahun }}</option>
+                    @endforeach
+                @endif
             </select>
         </div>
 
