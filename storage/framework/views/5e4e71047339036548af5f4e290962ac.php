@@ -7,11 +7,11 @@
     
     <!-- STATISTIK KARTU ATAS -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-primary text-white rounded-xl p-5 shadow-sm relative overflow-hidden">
+        <div class="bg-blue-200 text-gray-800 rounded-xl p-5 shadow-sm relative overflow-hidden">
             <div class="relative z-10">
-                <p class="text-sm font-medium text-blue-100 mb-1">Total Prestasi</p>
+                <p class="text-sm font-medium text-gray-800 mb-1">Total Prestasi</p>
                 <h3 class="text-3xl font-bold mb-2"><?php echo e(number_format($stats['total'], 0, ',', '.')); ?></h3>
-                <p class="text-xs text-blue-200"><i class="fa-solid fa-chart-simple mr-1"></i> Keseluruhan Data</p>
+                <p class="text-xs text-black-600"><i class="fa-solid fa-chart-simple mr-1"></i> Keseluruhan Data</p>
             </div>
             <i class="fa-solid fa-medal absolute -right-4 -bottom-4 text-7xl text-blue-600 opacity-50 z-0"></i>
         </div>
@@ -131,8 +131,8 @@
                     datasets: [{
                         label: 'Total Prestasi',
                         data: barData,
-                        backgroundColor: '#3b82f6', // Warna biru solid
-                        hoverBackgroundColor: '#2563eb', // Biru lebih gelap saat dihover
+                        backgroundColor: '#93c5fd', // Warna biru solid
+                        hoverBackgroundColor: '##93c5fd', // Biru lebih gelap saat dihover
                         borderRadius: 6, // Ujung atas batang agak melengkung (modern look)
                         borderSkipped: false,
                         barThickness: 'flex', // Menyesuaikan lebar batang secara otomatis
@@ -182,7 +182,7 @@
                     labels: doughnutLabels,
                     datasets: [{
                         data: doughnutData,
-                        backgroundColor: ['#3b82f6', '#6366f1', '#38bdf8', '#06b6d4', '#2dd4bf', '#93c5fd'],
+                        backgroundColor: ['#93c5fd', '#6366f1', '#38bdf8', '#06b6d4', '#2dd4bf', '#93c5fd'],
                         borderWidth: 0,
                         cutout: '75%'
                     }]

@@ -16,7 +16,7 @@
                     </span>
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.15]">
                         Bangga dengan <br />
-                        <span class="text-primary">Prestasi Siswa &amp; Alumni</span>
+                        <span class="text-primary">Prestasi Siswa</span>
                     </h1>
                     <p class="text-lg text-slate-600 max-w-[600px] leading-relaxed">
                         Jejak prestasi, bukti nyata. Bersama, kita ciptakan generasi berprestasi dan membanggakan untuk masa depan yang lebih cerah.

@@ -17,9 +17,9 @@
     <style type="text/tailwindcss">
         @theme {
             --font-sans: 'Poppins', sans-serif;
-            --color-primary: #000000; /* Biru muda / Blue 500 */
+            --color-primary: #3B82F6; /* Biru muda / Blue 500 */
             --color-primary-light: #eff6ff; /* Background aktif menu */
-            --color-surface: #fffaf0; /* Background utama aplikasi */
+            --color-surface: #f5f9fe; /* Background utama aplikasi */
         }
         body {
             font-family: 'Poppins', sans-serif;

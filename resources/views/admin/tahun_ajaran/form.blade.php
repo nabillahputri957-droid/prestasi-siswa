@@ -41,7 +41,7 @@
 
         <div class="flex justify-end gap-3 pt-6 mt-6 border-t border-gray-50">
             <a href="{{ route('admin.tahun-ajaran.index') }}" class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">Batal</a>
-            <button type="submit" class="px-6 py-2 bg-primary hover:bg-blue-200 text-white rounded-lg text-sm font-medium transition-colors shadow-sm focus:ring-4 focus:ring-blue-100">
+            <button type="submit" class="px-6 py-2 bg-blue-200 hover:bg-blue-300 text-gray rounded-lg text-sm font-medium transition-colors shadow-sm focus:ring-4 focus:ring-blue-100">
                 Simpan Data
             </button>
         </div>

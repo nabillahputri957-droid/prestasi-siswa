@@ -181,7 +181,7 @@
             </div>
 
             <!-- Tombol Simpan -->
-            <button type="submit" class="w-full py-3.5 bg-primary hover:bg-blue-200 text-white font-bold rounded-xl shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-2">
+            <button type="submit" class="w-full py-3.5 bg-blue-200 hover:bg-blue-300 text-gray font-bold rounded-xl shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-2">
                 <i class="fa-solid fa-floppy-disk"></i> Simpan Pengaturan
             </button>
 

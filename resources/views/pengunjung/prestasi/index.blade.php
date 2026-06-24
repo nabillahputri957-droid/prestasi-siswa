@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', $title . ' - SMP Negeri 1 Example')
+@section('title', $title . ' - SEKOLAH DASAR NEGERI 31')
 
 @section('content')
 
@@ -15,7 +15,7 @@
             {{ $title }}
         </h1>
         <p class="text-slate-500 max-w-2xl mx-auto">
-            Jelajahi seluruh rekam jejak pencapaian siswa dan alumni kami. Gunakan fitur pencarian untuk menemukan data yang lebih spesifik.
+            Jelajahi seluruh rekam jejak pencapaian siswa kami. Gunakan fitur pencarian untuk menemukan data yang lebih spesifik.
         </p>
     </div>
 </div>

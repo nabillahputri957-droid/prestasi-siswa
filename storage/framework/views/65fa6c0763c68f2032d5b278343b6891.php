@@ -11,7 +11,7 @@
             <h3 class="text-gray-800 font-medium flex items-center gap-2">
                 <i class="fa-solid fa-tags text-primary"></i> Kategori Prestasi
             </h3>
-            <button onclick="openModal('modal-tambah-kategori')" class="bg-primary hover:bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-center gap-2 shadow-sm">
+            <button onclick="openModal('modal-tambah-kategori')" class="bg-blue-200 hover:bg-blue-300 text-gray px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-center gap-2 shadow-sm">
                 <i class="fa-solid fa-plus"></i> Tambah
             </button>
         </div>
@@ -59,7 +59,7 @@
             <h3 class="text-gray-800 font-medium flex items-center gap-2">
                 <i class="fa-solid fa-layer-group text-primary"></i> Tingkat Lomba
             </h3>
-            <button onclick="openModal('modal-tambah-tingkat')" class="bg-primary hover:bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-center gap-2 shadow-sm">
+            <button onclick="openModal('modal-tambah-tingkat')" class="bg-blue-200 hover:bg-blue-300 text-gray px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-center gap-2 shadow-sm">
                 <i class="fa-solid fa-plus"></i> Tambah
             </button>
         </div>
@@ -124,7 +124,7 @@
             </div>
             <div class="flex justify-end gap-3 mt-6">
                 <button type="button" onclick="closeModal('modal-tambah-kategori')" class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">Batal</button>
-                <button type="submit" class="px-6 py-2 bg-primary hover:bg-blue-600 text-white rounded-lg text-sm font-medium shadow-sm focus:ring-4 focus:ring-blue-100">Simpan Data</button>
+                <button type="submit" class="px-6 py-2 bg-blue-200 hover:bg-blue-300 text-gray rounded-lg text-sm font-medium shadow-sm focus:ring-4 focus:ring-blue-100">Simpan Data</button>
             </div>
         </form>
     </div>
@@ -172,7 +172,7 @@
             </div>
             <div class="flex justify-end gap-3 mt-6">
                 <button type="button" onclick="closeModal('modal-tambah-tingkat')" class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">Batal</button>
-                <button type="submit" class="px-6 py-2 bg-primary hover:bg-blue-600 text-white rounded-lg text-sm font-medium shadow-sm focus:ring-4 focus:ring-blue-100">Simpan Data</button>
+                <button type="submit" class="px-6 py-2 bg-blue-200 hover:bg-blue-300 text-gray rounded-lg text-sm font-medium shadow-sm focus:ring-4 focus:ring-blue-100">Simpan Data</button>
             </div>
         </form>
     </div>

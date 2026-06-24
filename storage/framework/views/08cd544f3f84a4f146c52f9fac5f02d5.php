@@ -22,7 +22,7 @@
         body { font-family:'Poppins',sans-serif; }
     </style>
 </head>
-<body class="bg-[#dbeafe] text-gray-800 antialiased flex items-center justify-center min-h-screen relative p-5">
+<body class="bg-[#eff6ff] text-gray-800 antialiased flex items-center justify-center min-h-screen relative p-5">
 
     <!-- Loading Screen -->
     <div id="loading-screen"class="fixed inset-0 z-[9999] bg-white bg-opacity-80 backdrop-blur-sm flex-col items-center justify-center hidden">
@@ -31,7 +31,7 @@
     </div>
 
     <!-- Login Card -->
-    <div class="w-full max-w-4xl bg-[#fffaf0] rounded-3xl shadow-xl overflow-hidden flex">
+    <div class="w-full max-w-4xl bg-[#FFFFFF] rounded-3xl shadow-xl overflow-hidden flex">
 
         <!-- Lottie Animation -->
         <div class="w-1/2 bg-[#bfdbfe] flex items-center justify-center p-8">
